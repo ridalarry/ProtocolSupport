@@ -1,13 +1,3 @@
-/*
- * Decompiled with CFR 0_122.
- * 
- * Could not load the following classes:
- *  com.google.gson.JsonElement
- *  com.google.gson.JsonObject
- *  com.google.gson.JsonPrimitive
- *  com.google.gson.JsonSyntaxException
- *  org.apache.commons.lang3.StringUtils
- */
 package protocolsupport.utils;
 
 import com.google.gson.JsonElement;
