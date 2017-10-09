@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0_122.
- */
 package protocolsupport.utils;
 
 import java.util.EnumMap;
