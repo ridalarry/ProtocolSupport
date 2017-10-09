@@ -1,48 +1,41 @@
+/*
+ * Decompiled with CFR 0_122.
+ * 
+ * Could not load the following classes:
+ *  io.netty.util.Recycler
+ *  io.netty.util.Recycler$Handle
+ */
 package protocolsupport.utils.recyclable;
 
-import java.util.ArrayList;
-
 import io.netty.util.Recycler;
-import io.netty.util.Recycler.Handle;
+import java.util.ArrayList;
+import protocolsupport.utils.recyclable.RecyclableCollection;
 
-public class RecyclableArrayList<E> extends ArrayList<E> implements RecyclableCollection<E> {
-	private static final long serialVersionUID = 1L;
+public class RecyclableArrayList<E>
+extends ArrayList<E>
+implements RecyclableCollection<E> {
+    private static final long serialVersionUID = 1;
+    private static final Recycler<RecyclableArrayList> RECYCLER = new Recycler<RecyclableArrayList>(){
 
-	@SuppressWarnings("rawtypes")
-	private static final Recycler<RecyclableArrayList> recycler = new Recycler<RecyclableArrayList>() {
-		@SuppressWarnings("unchecked")
-		@Override
-		protected RecyclableArrayList newObject(Handle<RecyclableArrayList> handle) {
-			return new RecyclableArrayList(handle);
-		}
-	};
+        protected RecyclableArrayList newObject(Recycler.Handle handle) {
+            return new RecyclableArrayList(handle);
+        }
+    };
+    private final Recycler.Handle handle;
 
-	@SuppressWarnings("unchecked")
-	public static <T> RecyclableArrayList<T> create() {
-		return recycler.get();
-	}
+    public static <T> RecyclableArrayList<T> create() {
+        return (RecyclableArrayList)RECYCLER.get();
+    }
 
-	@SuppressWarnings("rawtypes")
-	private final Handle<RecyclableArrayList> handle;
-	@SuppressWarnings("rawtypes")
-	private RecyclableArrayList(Handle<RecyclableArrayList> handle) {
-		this.handle = handle;
-	}
+    private RecyclableArrayList(Recycler.Handle handle) {
+        this.handle = handle;
+    }
 
-	@Override
-	public void recycle() {
-		for (E element : this) {
-			if (element instanceof Recyclable) {
-				((Recyclable) element).recycle();
-			}
-		}
-		recycleObjectOnly();
-	}
-
-	@Override
-	public void recycleObjectOnly() {
-		clear();
-		handle.recycle(this);
-	}
+    @Override
+    public void recycle() {
+        this.clear();
+        RECYCLER.recycle(this, handle);
+    }
 
 }
+

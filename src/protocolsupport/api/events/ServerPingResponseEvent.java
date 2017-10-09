@@ -1,121 +1,122 @@
+/*
+ * Decompiled with CFR 0_122.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.server.v1_8_R3.MinecraftServer
+ *  org.bukkit.event.Event
+ *  org.bukkit.event.HandlerList
+ */
 package protocolsupport.api.events;
 
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-
+import net.minecraft.server.v1_8_R3.MinecraftServer;
+import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-
-import protocolsupport.api.Connection;
-import protocolsupport.api.ProtocolSupportAPI;
 import protocolsupport.api.ProtocolVersion;
-import protocolsupport.zplatform.ServerPlatform;
 
-public class ServerPingResponseEvent extends ConnectionEvent {
+public class ServerPingResponseEvent
+extends Event {
+    private final InetSocketAddress address;
+    private ProtocolInfo info;
+    private String motd;
+    private String icon;
+    private int maxPlayers;
+    private List<String> players;
+    private static final HandlerList list = new HandlerList();
 
-	private ProtocolInfo info;
-	private String motd;
-	private String icon;
-	private int maxPlayers;
-	private List<String> players;
+    public ServerPingResponseEvent(InetSocketAddress address, ProtocolInfo info, String icon, String motd, int maxPlayers, List<String> players) {
+        this.address = address;
+        this.setProtocolInfo(info);
+        this.setIcon(icon);
+        this.setMotd(motd);
+        this.setMaxPlayers(maxPlayers);
+        this.setPlayers(players);
+    }
 
-	public ServerPingResponseEvent(Connection connection, ProtocolInfo info, String icon, String motd, int maxPlayers, List<String> players) {
-		super(connection);
-		setProtocolInfo(info);
-		setIcon(icon);
-		setMotd(motd);
-		setMaxPlayers(maxPlayers);
-		setPlayers(players);
-	}
+    public InetSocketAddress getAddress() {
+        return this.address;
+    }
 
-	@Deprecated
-	public ServerPingResponseEvent(InetSocketAddress address, ProtocolInfo info, String icon, String motd, int maxPlayers, List<String> players) {
-		this(ProtocolSupportAPI.getConnection(address), info, icon, motd, maxPlayers, players);
-	}
+    public ProtocolInfo getProtocolInfo() {
+        return this.info;
+    }
 
-	public InetSocketAddress getAddress() {
-		return getConnection().getAddress();
-	}
+    public void setProtocolInfo(ProtocolInfo info) {
+        this.info = info != null ? info : new ProtocolInfo(-1, "ProtocolSupport");
+    }
 
-	public ProtocolInfo getProtocolInfo() {
-		return info;
-	}
+    public String getIcon() {
+        return this.icon;
+    }
 
-	public void setProtocolInfo(ProtocolInfo info) {
-		this.info = info != null ? info : new ProtocolInfo(-1, "ProtocolSupport");
-	}
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 
-	public String getIcon() {
-		return icon;
-	}
+    public String getMotd() {
+        return this.motd;
+    }
 
-	public void setIcon(String icon) {
-		this.icon = icon;
-	}
+    public void setMotd(String motd) {
+        this.motd = motd != null ? motd : "A minecraft server (ProtocolSupport)";
+    }
 
-	public String getMotd() {
-		return motd;
-	}
+    public int getMaxPlayers() {
+        return this.maxPlayers;
+    }
 
-	public void setMotd(String motd) {
-		this.motd = motd != null ? motd : "A minecraft server (ProtocolSupport)";
-	}
+    public void setMaxPlayers(int maxPlayers) {
+        this.maxPlayers = maxPlayers;
+    }
 
-	public int getMaxPlayers() {
-		return maxPlayers;
-	}
+    public List<String> getPlayers() {
+        return new ArrayList<String>(this.players);
+    }
 
-	public void setMaxPlayers(int maxPlayers) {
-		this.maxPlayers = maxPlayers;
-	}
+    public void setPlayers(List<String> players) {
+        this.players = players != null ? new ArrayList<String>(players) : new ArrayList();
+    }
 
-	public List<String> getPlayers() {
-		return new ArrayList<>(players);
-	}
+    public HandlerList getHandlers() {
+        return list;
+    }
 
-	public void setPlayers(List<String> players) {
-		this.players = players != null ? new ArrayList<>(players) : new ArrayList<>();
-	}
+    public static HandlerList getHandlerList() {
+        return list;
+    }
 
-	public static class ProtocolInfo {
-		private final int id;
-		private final String name;
+    public static String getServerModName() {
+        return MinecraftServer.getServer().getServerModName();
+    }
 
-		public ProtocolInfo(int id, String name) {
-			this.id = id;
-			this.name = name;
-		}
+    public static String getServerVersionName() {
+        return MinecraftServer.getServer().getVersion();
+    }
 
-		public ProtocolInfo(ProtocolVersion version, String name) {
-			this(version.getId(), name);
-		}
+    public static class ProtocolInfo {
+        private int id;
+        private String name;
 
-		public int getId() {
-			return id;
-		}
+        public ProtocolInfo(int id, String name) {
+            this.id = id;
+            this.name = name;
+        }
 
-		public String getName() {
-			return name;
-		}
-	}
+        public ProtocolInfo(ProtocolVersion version, String name) {
+            this(version.getId(), name);
+        }
 
-	private static final HandlerList list = new HandlerList();
+        public int getId() {
+            return this.id;
+        }
 
-	@Override
-	public HandlerList getHandlers() {
-		return list;
-	}
-
-	public static HandlerList getHandlerList() {
-		return list;
-	}
-
-	public static String getServerModName() {
-		return ServerPlatform.get().getMiscUtils().getModName();
-	}
-
-	public static String getServerVersionName() {
-		return ServerPlatform.get().getMiscUtils().getVersionName();
-	}
+        public String getName() {
+            return this.name;
+        }
+    }
 
 }
+

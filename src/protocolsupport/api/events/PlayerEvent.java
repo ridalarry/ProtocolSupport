@@ -1,34 +1,30 @@
+/*
+ * Decompiled with CFR 0_122.
+ * 
+ * Could not load the following classes:
+ *  org.bukkit.event.Event
+ */
 package protocolsupport.api.events;
 
 import java.net.InetSocketAddress;
+import org.bukkit.event.Event;
 
-import protocolsupport.api.Connection;
-import protocolsupport.api.ProtocolSupportAPI;
+public abstract class PlayerEvent
+extends Event {
+    private final InetSocketAddress address;
+    private final String username;
 
-public abstract class PlayerEvent extends ConnectionEvent {
+    public PlayerEvent(InetSocketAddress address, String username) {
+        this.address = address;
+        this.username = username;
+    }
 
-	private final String username;
+    public InetSocketAddress getAddress() {
+        return this.address;
+    }
 
-	public PlayerEvent(Connection connection, String username, boolean async) {
-		super(connection, async);
-		this.username = username;
-	}
-
-	public PlayerEvent(Connection connection, String username) {
-		this(connection, username, true);
-	}
-
-	@Deprecated
-	public PlayerEvent(InetSocketAddress address, String username) {
-		this(ProtocolSupportAPI.getConnection(address), username);
-	}
-
-	public InetSocketAddress getAddress() {
-		return getConnection().getAddress();
-	}
-
-	public String getName() {
-		return username;
-	}
-
+    public String getName() {
+        return this.username;
+    }
 }
+

@@ -1,53 +1,45 @@
+/*
+ * Decompiled with CFR 0_122.
+ * 
+ * Could not load the following classes:
+ *  org.bukkit.event.Event
+ *  org.bukkit.event.HandlerList
+ *  org.bukkit.inventory.ItemStack
+ */
 package protocolsupport.api.events;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
-
 import protocolsupport.api.ProtocolVersion;
-import protocolsupport.protocol.utils.i18n.I18NData;
 
-public abstract class ItemStackWriteEvent extends Event {
+public abstract class ItemStackWriteEvent
+extends Event {
+    private final ProtocolVersion version;
+    private final ItemStack original;
+    private static final HandlerList list = new HandlerList();
 
-	private final ProtocolVersion version;
-	private final String locale;
-	private final ItemStack original;
+    public ItemStackWriteEvent(ProtocolVersion version, ItemStack original) {
+        this.version = version;
+        this.original = original.clone();
+    }
 
-	@Deprecated
-	public ItemStackWriteEvent(ProtocolVersion version, ItemStack original) {
-		this(version, I18NData.DEFAULT_LOCALE, original);
-	}
+    public ItemStack getOriginal() {
+        return this.original.clone();
+    }
 
-	public ItemStackWriteEvent(ProtocolVersion version, String locale, ItemStack original) {
-		super(true);
-		this.version = version;
-		this.locale = locale;
-		this.original = original;
-	}
+    public ProtocolVersion getVersion() {
+        return this.version;
+    }
 
-	public ItemStack getOriginal() {
-		return original.clone();
-	}
+    public abstract ItemStack getResult();
 
-	public ProtocolVersion getVersion() {
-		return version;
-	}
+    public HandlerList getHandlers() {
+        return list;
+    }
 
-	public String getLocale() {
-		return locale;
-	}
-
-	public abstract ItemStack getResult();
-
-	private static final HandlerList list = new HandlerList();
-
-	@Override
-	public HandlerList getHandlers() {
-		return list;
-	}
-
-	public static HandlerList getHandlerList() {
-		return list;
-	}
-
+    public static HandlerList getHandlerList() {
+        return list;
+    }
 }
+

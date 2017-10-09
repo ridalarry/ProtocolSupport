@@ -1,103 +1,84 @@
+/*
+ * Decompiled with CFR 0_122.
+ */
 package protocolsupport.api.chat.components;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
 import protocolsupport.api.chat.modifiers.ClickAction;
 import protocolsupport.api.chat.modifiers.HoverAction;
 import protocolsupport.api.chat.modifiers.Modifier;
-import protocolsupport.protocol.typeremapper.legacy.LegacyChat;
-import protocolsupport.protocol.utils.i18n.I18NData;
-import protocolsupport.utils.Utils;
 
 public abstract class BaseComponent {
+    private List<BaseComponent> siblings = new ArrayList<BaseComponent>();
+    private Modifier modifier;
+    private ClickAction clickAction;
+    private HoverAction hoverAction;
+    private String clickInsertion;
 
-	private final List<BaseComponent> siblings = new ArrayList<>();
-	private Modifier modifier;
-	private ClickAction clickAction;
-	private HoverAction hoverAction;
-	private String clickInsertion;
+    public boolean isSimple() {
+        return this.siblings.isEmpty() && this.getModifier().isEmpty() && this.clickAction == null && this.hoverAction == null && this.clickInsertion == null;
+    }
 
-	public boolean isSimple() {
-		return siblings.isEmpty() && getModifier().isEmpty() && (clickAction == null) && (hoverAction == null) && (clickInsertion == null);
-	}
+    public List<BaseComponent> getSiblings() {
+        return Collections.unmodifiableList(this.siblings);
+    }
 
-	public List<BaseComponent> getSiblings() {
-		return Collections.unmodifiableList(this.siblings);
-	}
+    public void clearSiblings() {
+        this.siblings.clear();
+    }
 
-	public void clearSiblings() {
-		this.siblings.clear();
-	}
+    public void addSibling(BaseComponent sibling) {
+        this.siblings.add(sibling);
+    }
 
-	public void addSibling(BaseComponent sibling) {
-		this.siblings.add(sibling);
-	}
+    public /* varargs */ void addSiblings(BaseComponent ... siblings) {
+        for (BaseComponent sibling : siblings) {
+            this.siblings.add(sibling);
+        }
+    }
 
-	public void addSiblings(BaseComponent... siblings) {
-		for (BaseComponent sibling : siblings) {
-			this.siblings.add(sibling);
-		}
-	}
+    public void addSiblings(Collection<BaseComponent> siblings) {
+        this.siblings.addAll(siblings);
+    }
 
-	public void addSiblings(Collection<BaseComponent> siblings) {
-		this.siblings.addAll(siblings);
-	}
+    public Modifier getModifier() {
+        if (this.modifier == null) {
+            this.modifier = new Modifier();
+        }
+        return this.modifier;
+    }
 
-	public Modifier getModifier() {
-		if (this.modifier == null) {
-			this.modifier = new Modifier();
-		}
-		return this.modifier;
-	}
+    public void setModifier(Modifier modifier) {
+        this.modifier = modifier;
+    }
 
-	public void setModifier(Modifier modifier) {
-		this.modifier = modifier;
-	}
+    public ClickAction getClickAction() {
+        return this.clickAction;
+    }
 
-	public ClickAction getClickAction() {
-		return clickAction;
-	}
+    public void setClickAction(ClickAction clickAction) {
+        this.clickAction = clickAction;
+    }
 
-	public void setClickAction(ClickAction clickAction) {
-		this.clickAction = clickAction;
-	}
+    public HoverAction getHoverAction() {
+        return this.hoverAction;
+    }
 
-	public HoverAction getHoverAction() {
-		return hoverAction;
-	}
+    public void setHoverAction(HoverAction hoverAction) {
+        this.hoverAction = hoverAction;
+    }
 
-	public void setHoverAction(HoverAction hoverAction) {
-		this.hoverAction = hoverAction;
-	}
+    public String getClickInsertion() {
+        return this.clickInsertion;
+    }
 
-	public String getClickInsertion() {
-		return clickInsertion;
-	}
+    public void setClickInsertion(String clickInsertion) {
+        this.clickInsertion = clickInsertion;
+    }
 
-	public void setClickInsertion(String clickInsertion) {
-		this.clickInsertion = clickInsertion;
-	}
-
-	public String getValue() {
-		return getValue(I18NData.DEFAULT_LOCALE);
-	}
-
-	public abstract String getValue(String locale);
-
-	public String toLegacyText() {
-		return toLegacyText(I18NData.DEFAULT_LOCALE);
-	}
-
-	public String toLegacyText(String locale) {
-		return LegacyChat.toText(this, locale);
-	}
-
-	@Override
-	public String toString() {
-		return Utils.toStringAllFields(this);
-	}
-
+    public abstract String getValue();
 }
+

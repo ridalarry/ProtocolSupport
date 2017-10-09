@@ -1,47 +1,52 @@
+/*
+ * Decompiled with CFR 0_122.
+ */
 package protocolsupport.api.chat.modifiers;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import protocolsupport.utils.Utils;
-
 public class ClickAction {
+    private Type type;
+    private String value;
 
-	private final Type type;
-	private final String value;
+    public ClickAction(Type action, String value) {
+        this.type = action;
+        this.value = value;
+    }
 
-	public ClickAction(Type action, String value) {
-		this.type = action;
-		this.value = value;
-	}
+    public ClickAction(URL url) {
+        this.type = Type.OPEN_URL;
+        this.value = url.toString();
+    }
 
-	public ClickAction(URL url) {
-		this.type = Type.OPEN_URL;
-		this.value = url.toString();
-	}
+    public Type getType() {
+        return this.type;
+    }
 
-	public Type getType() {
-		return type;
-	}
+    public String getValue() {
+        return this.value;
+    }
 
-	public String getValue() {
-		return value;
-	}
+    public URL getUrl() throws MalformedURLException {
+        if (this.type == Type.OPEN_URL) {
+            return new URL(this.value);
+        }
+        throw new IllegalStateException((Object)((Object)this.type) + " is not an " + (Object)((Object)Type.OPEN_URL));
+    }
 
-	public URL getUrl() throws MalformedURLException {
-		if (type == Type.OPEN_URL) {
-			return new URL(value);
-		}
-		throw new IllegalStateException(type + " is not an " + Type.OPEN_URL);
-	}
+    public static enum Type {
+        OPEN_URL,
+        OPEN_FILE,
+        RUN_COMMAND,
+        TWITCH_USER_INFO,
+        SUGGEST_COMMAND,
+        CHANGE_PAGE;
+        
 
-	@Override
-	public String toString() {
-		return Utils.toStringAllFields(this);
-	}
-
-	public static enum Type {
-		OPEN_URL, OPEN_FILE, RUN_COMMAND, TWITCH_USER_INFO, SUGGEST_COMMAND, CHANGE_PAGE;
-	}
+        private Type() {
+        }
+    }
 
 }
+

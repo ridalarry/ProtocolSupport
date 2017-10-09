@@ -1,52 +1,57 @@
+/*
+ * Decompiled with CFR 0_122.
+ * 
+ * Could not load the following classes:
+ *  org.bukkit.Bukkit
+ *  org.bukkit.entity.Player
+ *  org.bukkit.scoreboard.Objective
+ *  org.bukkit.scoreboard.Score
+ *  org.bukkit.scoreboard.Scoreboard
+ */
 package protocolsupport.api.chat.components;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
+import protocolsupport.api.chat.components.BaseComponent;
 
-public class ScoreComponent extends BaseComponent {
+public class ScoreComponent
+extends BaseComponent {
+    private String playername;
+    private String objectivename;
+    private String value;
 
-	private final String playername;
-	private final String objectivename;
+    public ScoreComponent(String playername, String objectivename) {
+        this.playername = playername;
+        this.objectivename = objectivename;
+    }
 
-	private String forcedvalue;
+    public String getPlayerName() {
+        return this.playername;
+    }
 
-	public ScoreComponent(String playername, String objectivename) {
-		this.playername = playername;
-		this.objectivename = objectivename;
-	}
+    public String getObjectiveName() {
+        return this.objectivename;
+    }
 
-	public String getPlayerName() {
-		return playername;
-	}
+    public void setValue(String value) {
+        this.value = value;
+    }
 
-	public String getObjectiveName() {
-		return objectivename;
-	}
-
-	public boolean hasValue() {
-		return forcedvalue != null;
-	}
-
-	public void setValue(String value) {
-		forcedvalue = value;
-	}
-
-	@Override
-	public String getValue(String locale) {
-		String value = forcedvalue;
-		if (value == null) {
-			Player player = Bukkit.getPlayerExact(playername);
-			if (player != null) {
-				Scoreboard board = player.getScoreboard();
-				Objective objective = board.getObjective(objectivename);
-				if (objective != null) {
-					value = String.valueOf(objective.getScore(playername).getScore());
-				}
-			}
-		}
-		return value != null ? value : "";
-	}
-
+    @Override
+    public String getValue() {
+        Scoreboard board;
+        Objective objective;
+        Player player;
+        if (this.value == null && (player = Bukkit.getPlayerExact((String)this.playername)) != null && (objective = (board = player.getScoreboard()).getObjective(this.objectivename)) != null) {
+            this.value = String.valueOf(objective.getScore(this.playername).getScore());
+        }
+        if (this.value == null) {
+            this.value = "";
+        }
+        return this.value;
+    }
 }
+

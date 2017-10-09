@@ -1,16 +1,21 @@
+/*
+ * Decompiled with CFR 0_122.
+ */
 package protocolsupport.api.chat.components;
 
-public class TextComponent extends BaseComponent {
+import protocolsupport.api.chat.components.BaseComponent;
 
-	private final String text;
+public class TextComponent
+extends BaseComponent {
+    private String text;
 
-	public TextComponent(String text) {
-		this.text = text;
-	}
+    public TextComponent(String text) {
+        this.text = text;
+    }
 
-	@Override
-	public String getValue(String locale) {
-		return text;
-	}
-
+    @Override
+    public String getValue() {
+        return this.text;
+    }
 }
+

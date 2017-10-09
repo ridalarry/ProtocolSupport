@@ -1,16 +1,21 @@
+/*
+ * Decompiled with CFR 0_122.
+ */
 package protocolsupport.api.chat.components;
 
-public class SelectorComponent extends BaseComponent {
+import protocolsupport.api.chat.components.BaseComponent;
 
-	private final String selector;
+public class SelectorComponent
+extends BaseComponent {
+    private String selector;
 
-	public SelectorComponent(String selector) {
-		this.selector = selector;
-	}
+    public SelectorComponent(String selector) {
+        this.selector = selector;
+    }
 
-	@Override
-	public String getValue(String locale) {
-		return selector;
-	}
-
+    @Override
+    public String getValue() {
+        return this.selector;
+    }
 }
+

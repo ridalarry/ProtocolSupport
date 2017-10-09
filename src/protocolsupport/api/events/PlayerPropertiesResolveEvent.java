@@ -1,92 +1,89 @@
+/*
+ * Decompiled with CFR 0_122.
+ * 
+ * Could not load the following classes:
+ *  org.apache.commons.lang3.Validate
+ *  org.bukkit.event.HandlerList
+ */
 package protocolsupport.api.events;
 
 import java.net.InetSocketAddress;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-
 import org.apache.commons.lang3.Validate;
 import org.bukkit.event.HandlerList;
+import protocolsupport.api.events.PlayerEvent;
 
-import protocolsupport.api.Connection;
-import protocolsupport.api.ProtocolSupportAPI;
+public class PlayerPropertiesResolveEvent
+extends PlayerEvent {
+    private final HashMap<String, ProfileProperty> properties = new HashMap();
+    private static final HandlerList list = new HandlerList();
 
-public class PlayerPropertiesResolveEvent extends PlayerEvent {
+    public PlayerPropertiesResolveEvent(InetSocketAddress address, String username, List<ProfileProperty> properties) {
+        super(address, username);
+        for (ProfileProperty property : properties) {
+            this.addProperty(property);
+        }
+    }
 
-	private final HashMap<String, ProfileProperty> properties = new HashMap<>();
+    public Map<String, ProfileProperty> getProperties() {
+        return new HashMap<String, ProfileProperty>(this.properties);
+    }
 
-	public PlayerPropertiesResolveEvent(Connection connection, String username, Collection<ProfileProperty> properties) {
-		super(connection, username);
-		for (ProfileProperty property : properties) {
-			addProperty(property);
-		}
-	}
+    public boolean hasProperty(String name) {
+        return this.properties.containsKey(name);
+    }
 
-	@Deprecated
-	public PlayerPropertiesResolveEvent(InetSocketAddress address, String username, Collection<ProfileProperty> properties) {
-		this(ProtocolSupportAPI.getConnection(address), username, properties);
-	}
+    public void removeProperty(String name) {
+        this.properties.remove(name);
+    }
 
-	public Map<String, ProfileProperty> getProperties() {
-		return new HashMap<>(properties);
-	}
+    public void addProperty(ProfileProperty property) {
+        this.properties.put(property.getName(), property);
+    }
 
-	public boolean hasProperty(String name) {
-		return properties.containsKey(name);
-	}
+    public HandlerList getHandlers() {
+        return list;
+    }
 
-	public void removeProperty(String name) {
-		properties.remove(name);
-	}
+    public static HandlerList getHandlerList() {
+        return list;
+    }
 
-	public void addProperty(ProfileProperty property) {
-		properties.put(property.getName(), property);
-	}
+    public static class ProfileProperty {
+        private final String name;
+        private final String value;
+        private final String signature;
 
-	public static class ProfileProperty {
-		private final String name;
-		private final String value;
-		private final String signature;
+        public ProfileProperty(String name, String value, String signature) {
+            Validate.notNull((Object)name, (String)"Name cannot be null", (Object[])new Object[0]);
+            Validate.notNull((Object)value, (String)"Value cannot be null", (Object[])new Object[0]);
+            this.name = name;
+            this.value = value;
+            this.signature = signature;
+        }
 
-		public ProfileProperty(String name, String value, String signature) {
-			Validate.notNull(name, "Name cannot be null");
-			Validate.notNull(value, "Value cannot be null");
-			this.name = name;
-			this.value = value;
-			this.signature = signature;
-		}
+        public ProfileProperty(String name, String value) {
+            this(name, value, null);
+        }
 
-		public ProfileProperty(String name, String value) {
-			this(name, value, null);
-		}
+        public String getName() {
+            return this.name;
+        }
 
-		public String getName() {
-			return name;
-		}
+        public String getValue() {
+            return this.value;
+        }
 
-		public String getValue() {
-			return value;
-		}
+        public String getSignature() {
+            return this.signature;
+        }
 
-		public String getSignature() {
-			return signature;
-		}
-
-		public boolean hasSignature() {
-			return signature != null;
-		}
-	}
-
-
-	private static final HandlerList list = new HandlerList();
-
-	@Override
-	public HandlerList getHandlers() {
-		return list;
-	}
-
-	public static HandlerList getHandlerList() {
-		return list;
-	}
+        public boolean hasSignature() {
+            return this.signature != null;
+        }
+    }
 
 }
+
