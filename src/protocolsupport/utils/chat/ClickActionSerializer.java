@@ -1,16 +1,3 @@
-/*
- * Decompiled with CFR 0_122.
- * 
- * Could not load the following classes:
- *  com.google.gson.JsonDeserializationContext
- *  com.google.gson.JsonDeserializer
- *  com.google.gson.JsonElement
- *  com.google.gson.JsonObject
- *  com.google.gson.JsonParseException
- *  com.google.gson.JsonPrimitive
- *  com.google.gson.JsonSerializationContext
- *  com.google.gson.JsonSerializer
- */
 package protocolsupport.utils.chat;
 
 import com.google.gson.JsonDeserializationContext;
