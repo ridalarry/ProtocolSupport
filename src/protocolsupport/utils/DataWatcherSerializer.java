@@ -1,15 +1,3 @@
-/*
- * Decompiled with CFR 0_122.
- * 
- * Could not load the following classes:
- *  gnu.trove.iterator.TIntObjectIterator
- *  gnu.trove.map.TIntObjectMap
- *  gnu.trove.map.hash.TIntObjectHashMap
- *  io.netty.buffer.ByteBuf
- *  net.minecraft.server.v1_8_R3.BlockPosition
- *  net.minecraft.server.v1_8_R3.ItemStack
- *  net.minecraft.server.v1_8_R3.Vector3f
- */
 package protocolsupport.utils;
 
 import gnu.trove.iterator.TIntObjectIterator;
