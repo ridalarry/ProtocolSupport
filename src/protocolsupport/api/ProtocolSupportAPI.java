@@ -1,9 +1,3 @@
-/*
- * Decompiled with CFR 0_122.
- * 
- * Could not load the following classes:
- *  org.bukkit.entity.Player
- */
 package protocolsupport.api;
 
 import java.net.InetSocketAddress;

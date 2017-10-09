@@ -1,16 +1,3 @@
-/*
- * Decompiled with CFR 0_122.
- * 
- * Could not load the following classes:
- *  org.bukkit.Bukkit
- *  org.bukkit.Server
- *  org.bukkit.command.CommandExecutor
- *  org.bukkit.command.PluginCommand
- *  org.bukkit.event.Listener
- *  org.bukkit.plugin.Plugin
- *  org.bukkit.plugin.PluginManager
- *  org.bukkit.plugin.java.JavaPlugin
- */
 package protocolsupport;
 
 import java.util.logging.Logger;
