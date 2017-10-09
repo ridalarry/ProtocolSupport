@@ -1,30 +1,22 @@
 package protocolsupport.api.events;
 
 import java.net.InetSocketAddress;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.Validate;
 import org.bukkit.event.HandlerList;
 
-import protocolsupport.api.Connection;
-import protocolsupport.api.ProtocolSupportAPI;
-
 public class PlayerPropertiesResolveEvent extends PlayerEvent {
 
 	private final HashMap<String, ProfileProperty> properties = new HashMap<>();
 
-	public PlayerPropertiesResolveEvent(Connection connection, String username, Collection<ProfileProperty> properties) {
-		super(connection, username);
+	public PlayerPropertiesResolveEvent(InetSocketAddress address, String username, List<ProfileProperty> properties) {
+		super(address, username);
 		for (ProfileProperty property : properties) {
 			addProperty(property);
 		}
-	}
-
-	@Deprecated
-	public PlayerPropertiesResolveEvent(InetSocketAddress address, String username, Collection<ProfileProperty> properties) {
-		this(ProtocolSupportAPI.getConnection(address), username, properties);
 	}
 
 	public Map<String, ProfileProperty> getProperties() {

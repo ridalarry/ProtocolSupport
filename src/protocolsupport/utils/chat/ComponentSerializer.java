@@ -9,11 +9,11 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 import protocolsupport.api.chat.components.BaseComponent;
-import protocolsupport.api.chat.components.KeybindComponent;
 import protocolsupport.api.chat.components.ScoreComponent;
 import protocolsupport.api.chat.components.SelectorComponent;
 import protocolsupport.api.chat.components.TextComponent;
@@ -51,9 +51,15 @@ public class ComponentSerializer implements JsonDeserializer<BaseComponent>, Jso
 				String translate = jsonObject.get("translate").getAsString();
 				if (jsonObject.has("with")) {
 					JsonArray withJsonArray = jsonObject.getAsJsonArray("with");
-					BaseComponent[] array = new BaseComponent[withJsonArray.size()];
+					Object[] array = new Object[withJsonArray.size()];
 					for (int i = 0; i < array.length; ++i) {
 						array[i] = deserialize(withJsonArray.get(i), type, ctx);
+						if (array[i] instanceof TextComponent) {
+							final TextComponent text = (TextComponent) array[i];
+							if (text.isSimple()) {
+								array[i] = text.getValue();
+							}
+						}
 					}
 					component = new TranslateComponent(translate, array);
 				} else {
@@ -70,8 +76,6 @@ public class ComponentSerializer implements JsonDeserializer<BaseComponent>, Jso
 				}
 			} else if (jsonObject.has("selector")) {
 				component = new SelectorComponent(JsonUtils.getString(jsonObject, "selector"));
-			} else if (jsonObject.has("keybind")) {
-				component = new KeybindComponent(JsonUtils.getString(jsonObject, "keybind"));
 			} else {
 				throw new JsonParseException("Don't know how to turn " + element.toString() + " into a Component");
 			}
@@ -87,13 +91,9 @@ public class ComponentSerializer implements JsonDeserializer<BaseComponent>, Jso
 			if (jsonObject.has("insertion")) {
 				component.setClickInsertion(jsonObject.getAsJsonPrimitive("insertion").getAsString());
 			}
-			component.setModifier(ctx.deserialize(jsonObject, Modifier.class));
-			if (jsonObject.has("clickEvent")) {
-				component.setClickAction(ctx.deserialize(jsonObject.get("clickEvent"), ClickAction.class));
-			}
-			if (jsonObject.has("hoverEvent")) {
-				component.setHoverAction(ctx.deserialize(jsonObject.get("hoverEvent"), HoverAction.class));
-			}
+			component.setModifier(ctx.<Modifier>deserialize(element, Modifier.class));
+			component.setClickAction(ctx.<ClickAction>deserialize(element, ClickAction.class));
+			component.setHoverAction(ctx.<HoverAction>deserialize(element, HoverAction.class));
 			return component;
 		}
         throw new JsonParseException("Don't know how to turn " + element.toString() + " into a Component");
@@ -101,6 +101,9 @@ public class ComponentSerializer implements JsonDeserializer<BaseComponent>, Jso
 
 	@Override
 	public JsonElement serialize(BaseComponent component, Type type, JsonSerializationContext ctx) {
+		if (component instanceof TextComponent && component.isSimple()) {
+			return new JsonPrimitive(component.getValue());
+		}
 		JsonObject jsonObject = new JsonObject();
 		if (!component.getModifier().isEmpty()) {
 			serializeAndAdd(component.getModifier(), jsonObject, ctx);
@@ -126,10 +129,15 @@ public class ComponentSerializer implements JsonDeserializer<BaseComponent>, Jso
 		} else if (component instanceof TranslateComponent) {
 			TranslateComponent translate = (TranslateComponent) component;
 			jsonObject.addProperty("translate", translate.getTranslationKey());
-			if (!translate.getTranslationArgs().isEmpty()) {
+			if (!translate.getArgs().isEmpty()) {
 				JsonArray argsJson = new JsonArray();
-				for (BaseComponent arg : translate.getTranslationArgs()) {
-					argsJson.add(serialize(arg, arg.getClass(), ctx));
+				for (Object arg : translate.getArgs()) {
+					if (arg instanceof BaseComponent) {
+						BaseComponent argText = (BaseComponent) arg;
+						argsJson.add(serialize(argText, argText.getClass(), ctx));
+					} else {
+						argsJson.add(new JsonPrimitive(String.valueOf(arg)));
+					}
 				}
 				jsonObject.add("with", argsJson);
 			}
@@ -138,14 +146,10 @@ public class ComponentSerializer implements JsonDeserializer<BaseComponent>, Jso
 			JsonObject scoreJSON = new JsonObject();
 			scoreJSON.addProperty("name", score.getPlayerName());
 			scoreJSON.addProperty("objective", score.getObjectiveName());
-			if (score.hasValue()) {
-				scoreJSON.addProperty("value", score.getValue());
-			}
+			scoreJSON.addProperty("value", score.getValue());
 			jsonObject.add("score", scoreJSON);
 		} else if (component instanceof SelectorComponent) {
 			jsonObject.addProperty("selector", component.getValue());
-		} else if (component instanceof KeybindComponent) {
-			jsonObject.addProperty("keybind", ((KeybindComponent) component).getKeybind());
 		} else {
 			throw new IllegalArgumentException("Don't know how to serialize " + component + " as a Component");
 		}

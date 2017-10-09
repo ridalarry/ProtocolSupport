@@ -8,20 +8,17 @@ import java.util.List;
 import protocolsupport.api.chat.modifiers.ClickAction;
 import protocolsupport.api.chat.modifiers.HoverAction;
 import protocolsupport.api.chat.modifiers.Modifier;
-import protocolsupport.protocol.typeremapper.legacy.LegacyChat;
-import protocolsupport.protocol.utils.i18n.I18NData;
-import protocolsupport.utils.Utils;
 
 public abstract class BaseComponent {
 
-	private final List<BaseComponent> siblings = new ArrayList<>();
+	private List<BaseComponent> siblings = new ArrayList<BaseComponent>();
 	private Modifier modifier;
 	private ClickAction clickAction;
 	private HoverAction hoverAction;
 	private String clickInsertion;
 
 	public boolean isSimple() {
-		return siblings.isEmpty() && getModifier().isEmpty() && (clickAction == null) && (hoverAction == null) && (clickInsertion == null);
+		return siblings.isEmpty() && getModifier().isEmpty() && clickAction == null && hoverAction == null && clickInsertion == null;
 	}
 
 	public List<BaseComponent> getSiblings() {
@@ -81,23 +78,6 @@ public abstract class BaseComponent {
 		this.clickInsertion = clickInsertion;
 	}
 
-	public String getValue() {
-		return getValue(I18NData.DEFAULT_LOCALE);
-	}
-
-	public abstract String getValue(String locale);
-
-	public String toLegacyText() {
-		return toLegacyText(I18NData.DEFAULT_LOCALE);
-	}
-
-	public String toLegacyText(String locale) {
-		return LegacyChat.toText(this, locale);
-	}
-
-	@Override
-	public String toString() {
-		return Utils.toStringAllFields(this);
-	}
+	public abstract String getValue();
 
 }

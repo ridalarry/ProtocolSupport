@@ -6,39 +6,46 @@ import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.buffer.UnpooledByteBufAllocator;
 import protocolsupport.ProtocolSupport;
 import protocolsupport.utils.Utils;
+import protocolsupport.utils.Utils.Converter;
 
 public class Allocator {
 
-	private static final boolean direct = Utils.getJavaPropertyValue("buffer", true, (t -> {
-		switch (t.toLowerCase()) {
-			case "direct": {
-				return true;
-			}
-			case "heap": {
-				return false;
-			}
-			default: {
-				throw new RuntimeException("Invalid buffer type "+t.toLowerCase()+", should be either heap or direct");
-			}
-		}
-	}));
-	private static final ByteBufAllocator allocator = Utils.getJavaPropertyValue("allocator", PooledByteBufAllocator.DEFAULT, (t -> {
-		switch (t.toLowerCase()) {
-			case "pooled": {
-				return PooledByteBufAllocator.DEFAULT;
-			}
-			case "unpooled": {
-				return UnpooledByteBufAllocator.DEFAULT;
-			}
-			default: {
-				throw new IllegalArgumentException("Invalid allocator type "+t.toLowerCase()+", should be either pooled or unpooled");
-			}
-		}
-	}));
-
-	static {
+	public static void init() {
 		ProtocolSupport.logInfo("Allocator: "+allocator + ", direct: "+direct);
 	}
+
+	private static final boolean direct = Utils.getJavaPropertyValue("protocolsupport.buffer", true, new Converter<String, Boolean>() {
+		@Override
+		public Boolean convert(String t) {
+			switch (t.toLowerCase()) {
+				case "direct": {
+					return true;
+				}
+				case "heap": {
+					return false;
+				}
+				default: {
+					throw new RuntimeException("Invalid buffer type "+t.toLowerCase()+", should be either heap or direct");
+				}
+			}
+		}
+	});
+	private static final ByteBufAllocator allocator = Utils.getJavaPropertyValue("protocolsupport.allocator", PooledByteBufAllocator.DEFAULT, new Converter<String, ByteBufAllocator>() {
+		@Override
+		public ByteBufAllocator convert(String t) {
+			switch (t.toLowerCase()) {
+				case "pooled": {
+					return PooledByteBufAllocator.DEFAULT;
+				}
+				case "unpooled": {
+					return UnpooledByteBufAllocator.DEFAULT;
+				}
+				default: {
+					throw new IllegalArgumentException("Invalid allocator type "+t.toLowerCase()+", should be either pooled or unpooled");
+				}
+			}
+		}
+	});
 
 	public static ByteBuf allocateBuffer() {
 		if (direct) {

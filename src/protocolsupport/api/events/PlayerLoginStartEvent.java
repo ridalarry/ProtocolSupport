@@ -5,26 +5,19 @@ import java.util.UUID;
 
 import org.bukkit.event.HandlerList;
 
-import protocolsupport.api.Connection;
-import protocolsupport.api.ProtocolSupportAPI;
-
-public class PlayerLoginStartEvent extends PlayerAbstractLoginEvent {
+public class PlayerLoginStartEvent extends PlayerEvent {
 
 	private final String hostname;
 	private boolean onlinemode;
 	private boolean useonlinemodeuuid;
 	private UUID uuid;
+	private String denyLoginMessage;
 
-	public PlayerLoginStartEvent(Connection connection, String username, boolean onlinemode, boolean useonlinemodeuuid, String hostname) {
-		super(connection, username);
+	public PlayerLoginStartEvent(InetSocketAddress address, String username, boolean onlinemode, boolean useonlinemodeuuid, String hostname) {
+		super(address, username);
 		this.onlinemode = onlinemode;
 		this.useonlinemodeuuid = useonlinemodeuuid;
 		this.hostname = hostname;
-	}
-
-	@Deprecated
-	public PlayerLoginStartEvent(InetSocketAddress address, String username, boolean onlinemode, boolean useonlinemodeuuid, String hostname) {
-		this(ProtocolSupportAPI.getConnection(address), username, onlinemode, useonlinemodeuuid, hostname);
 	}
 
 	public String getHostname() {
@@ -57,6 +50,19 @@ public class PlayerLoginStartEvent extends PlayerAbstractLoginEvent {
 
 	public UUID getForcedUUID() {
 		return uuid;
+	}
+
+
+	public boolean isLoginDenied() {
+		return denyLoginMessage != null;
+	}
+
+	public String getDenyLoginMessage() {
+		return denyLoginMessage;
+	}
+
+	public void denyLogin(String message) {
+		this.denyLoginMessage = message;
 	}
 
 

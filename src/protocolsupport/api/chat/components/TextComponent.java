@@ -2,14 +2,14 @@ package protocolsupport.api.chat.components;
 
 public class TextComponent extends BaseComponent {
 
-	private final String text;
+	private String text;
 
 	public TextComponent(String text) {
 		this.text = text;
 	}
 
 	@Override
-	public String getValue(String locale) {
+	public String getValue() {
 		return text;
 	}
 

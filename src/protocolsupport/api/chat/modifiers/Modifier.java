@@ -2,8 +2,6 @@ package protocolsupport.api.chat.modifiers;
 
 import org.bukkit.ChatColor;
 
-import protocolsupport.utils.Utils;
-
 public class Modifier {
 
 	private ChatColor color;
@@ -14,7 +12,7 @@ public class Modifier {
 	private Boolean obfuscated;
 
 	public boolean isEmpty() {
-		return (color == null) && (bold == null) && (italic == null) && (underlined == null) && (strikethrough == null) && (obfuscated == null);
+		return color == null && bold == null && italic == null && underlined == null && strikethrough == null && obfuscated == null;
 	}
 
 	public void clear() {
@@ -70,10 +68,6 @@ public class Modifier {
 		}
 	}
 
-	public boolean hasColor() {
-		return color != null;
-	}
-
 	public ChatColor getColor() {
 		return color;
 	}
@@ -126,11 +120,6 @@ public class Modifier {
 
 	public void setRandom(Boolean random) {
 		this.obfuscated = random;
-	}
-
-	@Override
-	public String toString() {
-		return Utils.toStringAllFields(this);
 	}
 
 }

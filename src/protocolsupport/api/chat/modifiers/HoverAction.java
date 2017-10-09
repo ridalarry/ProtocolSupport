@@ -4,23 +4,23 @@ import java.util.UUID;
 
 import org.bukkit.Achievement;
 import org.bukkit.Statistic;
+import org.bukkit.craftbukkit.v1_8_R3.CraftStatistic;
+import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
+import net.minecraft.server.v1_8_R3.MojangsonParseException;
+import net.minecraft.server.v1_8_R3.MojangsonParser;
+import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import protocolsupport.api.chat.ChatAPI;
 import protocolsupport.api.chat.components.BaseComponent;
-import protocolsupport.api.chat.components.TextComponent;
 import protocolsupport.api.utils.Any;
-import protocolsupport.utils.Utils;
-import protocolsupport.zplatform.ServerPlatform;
-import protocolsupport.zplatform.itemstack.NBTTagCompoundWrapper;
 
-@SuppressWarnings("deprecation")
 public class HoverAction {
 
-	private final Type type;
-	private final String value;
+	private Type type;
+	private String value;
 
 	public HoverAction(Type type, String value) {
 		this.type = type;
@@ -34,32 +34,34 @@ public class HoverAction {
 
 	public HoverAction(ItemStack itemstack) {
 		this.type = Type.SHOW_ITEM;
-		this.value = ServerPlatform.get().getMiscUtils().createNBTTagFromItemStack(itemstack).toString();
+		net.minecraft.server.v1_8_R3.ItemStack nmsitemstack = CraftItemStack.asNMSCopy(itemstack);
+		NBTTagCompound compound = new NBTTagCompound();
+		nmsitemstack.save(compound);
+		this.value = compound.toString();
 	}
 
 	public HoverAction(Entity entity) {
 		this(new EntityInfo(entity));
 	}
 
+	@SuppressWarnings("deprecation")
 	public HoverAction(EntityInfo entityinfo) {
 		this.type = Type.SHOW_ENTITY;
-		NBTTagCompoundWrapper compound = ServerPlatform.get().getWrapperFactory().createEmptyNBTCompound();
+		NBTTagCompound compound = new NBTTagCompound();
 		compound.setString("type", entityinfo.getType().getName());
 		compound.setString("id", entityinfo.getUUID().toString());
 		compound.setString("name", entityinfo.getName());
 		this.value = compound.toString();
 	}
 
-	@Deprecated
 	public HoverAction(Achievement achievment) {
-		this.type = Type.SHOW_TEXT;
-		this.value = ChatAPI.toJSON(new TextComponent("Achievement hover component is no longer supported"));
+		this.type = Type.SHOW_ACHIEVEMENT;
+		this.value = CraftStatistic.getNMSAchievement(achievment).name;
 	}
 
-	@Deprecated
 	public HoverAction(Statistic stat) {
-		this.type = Type.SHOW_TEXT;
-		this.value = ChatAPI.toJSON(new TextComponent("Statistic hover component is no longer supported"));
+		this.type = Type.SHOW_ACHIEVEMENT;
+		this.value = CraftStatistic.getNMSStatistic(stat).name;
 	}
 
 	public Type getType() {
@@ -77,19 +79,29 @@ public class HoverAction {
 
 	public ItemStack getItemStack() {
 		validateAction(type, Type.SHOW_ITEM);
-		return ServerPlatform.get().getMiscUtils().createItemStackFromNBTTag(ServerPlatform.get().getWrapperFactory().createNBTCompoundFromJson(value));
+		try {
+			return CraftItemStack.asCraftMirror(net.minecraft.server.v1_8_R3.ItemStack.createStack(MojangsonParser.parse(value)));
+		} catch (MojangsonParseException e) {
+			throw new IllegalStateException("Unable to parse value to itemstack");
+		}
 	}
 
+	@SuppressWarnings("deprecation")
 	public EntityInfo getEntity() {
 		validateAction(type, Type.SHOW_ENTITY);
-		NBTTagCompoundWrapper compound = ServerPlatform.get().getWrapperFactory().createNBTCompoundFromJson(value);
-		return new EntityInfo(EntityType.fromName(compound.getString("type")), UUID.fromString(compound.getString("id")), compound.getString("name"));
+		try {
+			NBTTagCompound compound = MojangsonParser.parse(value);
+			return new EntityInfo(EntityType.fromName(compound.getString("type")), UUID.fromString(compound.getString("id")), compound.getString("name"));
+		} catch (MojangsonParseException e) {
+			throw new IllegalStateException("Unable to parse value to entity info");
+		}
 	}
 
-	@Deprecated
 	public Any<Achievement, Statistic> getAchievmentOrStat() {
 		validateAction(type, Type.SHOW_ACHIEVEMENT);
-		return new Any<>(null, null);
+		Achievement achievement = CraftStatistic.getBukkitAchievementByName(value);
+		Statistic stat = CraftStatistic.getBukkitStatisticByName(value);
+		return new Any<>(achievement, stat);
 	}
 
 	static void validateAction(Type current, Type expected) {
@@ -98,21 +110,14 @@ public class HoverAction {
 		}
 	}
 
-	@Override
-	public String toString() {
-		return Utils.toStringAllFields(this);
-	}
-
 	public static enum Type {
-		SHOW_TEXT, SHOW_ITEM, SHOW_ENTITY,
-		SHOW_ACHIEVEMENT //no longer exist
-		;
+		SHOW_TEXT, SHOW_ACHIEVEMENT, SHOW_ITEM, SHOW_ENTITY;
 	}
 
 	public static class EntityInfo {
-		private final EntityType etype;
-		private final UUID uuid;
-		private final String name;
+		private EntityType etype;
+		private UUID uuid;
+		private String name;
 
 		public EntityInfo(EntityType etype, UUID uuid, String name) {
 			this.etype = etype;
@@ -134,11 +139,6 @@ public class HoverAction {
 
 		public String getName() {
 			return name;
-		}
-
-		@Override
-		public String toString() {
-			return Utils.toStringAllFields(this);
 		}
 	}
 

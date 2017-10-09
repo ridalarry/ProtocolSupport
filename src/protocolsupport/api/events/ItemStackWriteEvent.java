@@ -5,24 +5,14 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
 import protocolsupport.api.ProtocolVersion;
-import protocolsupport.protocol.utils.i18n.I18NData;
 
 public abstract class ItemStackWriteEvent extends Event {
 
 	private final ProtocolVersion version;
-	private final String locale;
 	private final ItemStack original;
-
-	@Deprecated
 	public ItemStackWriteEvent(ProtocolVersion version, ItemStack original) {
-		this(version, I18NData.DEFAULT_LOCALE, original);
-	}
-
-	public ItemStackWriteEvent(ProtocolVersion version, String locale, ItemStack original) {
-		super(true);
 		this.version = version;
-		this.locale = locale;
-		this.original = original;
+		this.original = original.clone();
 	}
 
 	public ItemStack getOriginal() {
@@ -31,10 +21,6 @@ public abstract class ItemStackWriteEvent extends Event {
 
 	public ProtocolVersion getVersion() {
 		return version;
-	}
-
-	public String getLocale() {
-		return locale;
 	}
 
 	public abstract ItemStack getResult();

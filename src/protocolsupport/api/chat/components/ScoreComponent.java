@@ -7,10 +7,9 @@ import org.bukkit.scoreboard.Scoreboard;
 
 public class ScoreComponent extends BaseComponent {
 
-	private final String playername;
-	private final String objectivename;
-
-	private String forcedvalue;
+	private String playername;
+	private String objectivename;
+	private String value;
 
 	public ScoreComponent(String playername, String objectivename) {
 		this.playername = playername;
@@ -25,17 +24,12 @@ public class ScoreComponent extends BaseComponent {
 		return objectivename;
 	}
 
-	public boolean hasValue() {
-		return forcedvalue != null;
-	}
-
 	public void setValue(String value) {
-		forcedvalue = value;
+		this.value = value;
 	}
 
 	@Override
-	public String getValue(String locale) {
-		String value = forcedvalue;
+	public String getValue() {
 		if (value == null) {
 			Player player = Bukkit.getPlayerExact(playername);
 			if (player != null) {
@@ -46,7 +40,10 @@ public class ScoreComponent extends BaseComponent {
 				}
 			}
 		}
-		return value != null ? value : "";
+		if (value == null) {
+			value = "";
+		}
+		return value;
 	}
 
 }

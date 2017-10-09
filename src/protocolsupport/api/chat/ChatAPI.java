@@ -1,16 +1,15 @@
 package protocolsupport.api.chat;
 
-import java.text.MessageFormat;
-
 import org.apache.commons.lang3.Validate;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import protocolsupport.api.ProtocolSupportAPI;
+import net.minecraft.server.v1_8_R3.IChatBaseComponent.ChatSerializer;
+import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 import protocolsupport.api.chat.components.BaseComponent;
-import protocolsupport.api.chat.components.TextComponent;
 import protocolsupport.api.chat.modifiers.ClickAction;
 import protocolsupport.api.chat.modifiers.HoverAction;
 import protocolsupport.api.chat.modifiers.Modifier;
@@ -18,7 +17,6 @@ import protocolsupport.utils.chat.ClickActionSerializer;
 import protocolsupport.utils.chat.ComponentSerializer;
 import protocolsupport.utils.chat.HoverActionSerializer;
 import protocolsupport.utils.chat.ModifierSerializer;
-import protocolsupport.zplatform.ServerPlatform;
 
 public class ChatAPI {
 
@@ -29,13 +27,8 @@ public class ChatAPI {
 	.registerTypeHierarchyAdapter(HoverAction.class, new HoverActionSerializer())
 	.create();
 
-	public static BaseComponent fromJSON(String json) throws JsonParseException {
-		try {
-			BaseComponent result = gson.fromJson(json, BaseComponent.class);
-			return result != null ? result : new TextComponent("");
-		} catch (Exception e) {
-			throw new JsonParseException(json, e);
-		}
+	public static BaseComponent fromJSON(String json) {
+		return json != null ? gson.fromJson(json, BaseComponent.class) : null;
 	}
 
 	public static String toJSON(BaseComponent component) {
@@ -58,14 +51,7 @@ public class ChatAPI {
 		Validate.notNull(player, "Player can't be null");
 		Validate.notNull(messageJson, "Message can't be null");
 		Validate.notNull(position, "Message position can't be null");
-		ProtocolSupportAPI.getConnection(player).sendPacket(ServerPlatform.get().getPacketFactory().createOutboundChatPacket(messageJson, position.ordinal()));
-	}
-
-	public static class JsonParseException extends RuntimeException {
-		private static final long serialVersionUID = 1L;
-		public JsonParseException(String msg, Exception e) {
-			super(MessageFormat.format("Unable to parse json string {0}", msg), e);
-		}
+		((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutChat(ChatSerializer.a(messageJson), (byte) position.ordinal()));
 	}
 
 	public static enum MessagePosition {

@@ -4,14 +4,15 @@ import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-import protocolsupport.api.Connection;
-import protocolsupport.api.ProtocolSupportAPI;
+import net.minecraft.server.v1_8_R3.MinecraftServer;
 import protocolsupport.api.ProtocolVersion;
-import protocolsupport.zplatform.ServerPlatform;
 
-public class ServerPingResponseEvent extends ConnectionEvent {
+public class ServerPingResponseEvent extends Event {
+
+	private final InetSocketAddress address;
 
 	private ProtocolInfo info;
 	private String motd;
@@ -19,8 +20,8 @@ public class ServerPingResponseEvent extends ConnectionEvent {
 	private int maxPlayers;
 	private List<String> players;
 
-	public ServerPingResponseEvent(Connection connection, ProtocolInfo info, String icon, String motd, int maxPlayers, List<String> players) {
-		super(connection);
+	public ServerPingResponseEvent(InetSocketAddress address, ProtocolInfo info, String icon, String motd, int maxPlayers, List<String> players) {
+		this.address = address;
 		setProtocolInfo(info);
 		setIcon(icon);
 		setMotd(motd);
@@ -28,13 +29,8 @@ public class ServerPingResponseEvent extends ConnectionEvent {
 		setPlayers(players);
 	}
 
-	@Deprecated
-	public ServerPingResponseEvent(InetSocketAddress address, ProtocolInfo info, String icon, String motd, int maxPlayers, List<String> players) {
-		this(ProtocolSupportAPI.getConnection(address), info, icon, motd, maxPlayers, players);
-	}
-
 	public InetSocketAddress getAddress() {
-		return getConnection().getAddress();
+		return address;
 	}
 
 	public ProtocolInfo getProtocolInfo() {
@@ -70,16 +66,16 @@ public class ServerPingResponseEvent extends ConnectionEvent {
 	}
 
 	public List<String> getPlayers() {
-		return new ArrayList<>(players);
+		return new ArrayList<String>(players);
 	}
 
 	public void setPlayers(List<String> players) {
-		this.players = players != null ? new ArrayList<>(players) : new ArrayList<>();
+		this.players = players != null ? new ArrayList<String>(players) : new ArrayList<String>();
 	}
 
 	public static class ProtocolInfo {
-		private final int id;
-		private final String name;
+		private int id;
+		private String name;
 
 		public ProtocolInfo(int id, String name) {
 			this.id = id;
@@ -111,11 +107,11 @@ public class ServerPingResponseEvent extends ConnectionEvent {
 	}
 
 	public static String getServerModName() {
-		return ServerPlatform.get().getMiscUtils().getModName();
+		return MinecraftServer.getServer().getServerModName();
 	}
 
 	public static String getServerVersionName() {
-		return ServerPlatform.get().getMiscUtils().getVersionName();
+		return MinecraftServer.getServer().getVersion();
 	}
 
 }
