@@ -36,21 +36,21 @@ public class InitialPacketDecoder extends SimpleChannelInboundHandler<ByteBuf> {
 
 	private static final EnumMap<ProtocolVersion, IPipeLineBuilder> pipelineBuilders = new EnumMap<ProtocolVersion, IPipeLineBuilder>(ProtocolVersion.class);
 	static {
-		IPipeLineBuilder builder = new protocolsupport.protocol.transformer.v_1_8.PipeLineBuilder();
+		IPipeLineBuilder builder = new protocolsupport.protocol.pipeline.version.v_1_8.PipeLineBuilder();
 		pipelineBuilders.put(ProtocolVersion.MINECRAFT_FUTURE, builder);
 		pipelineBuilders.put(ProtocolVersion.MINECRAFT_1_8, builder);
-		IPipeLineBuilder builder17 = new protocolsupport.protocol.transformer.v_1_7.PipeLineBuilder();
+		IPipeLineBuilder builder17 = new protocolsupport.protocol.pipeline.version.v_1_7.PipeLineBuilder();
 		pipelineBuilders.put(ProtocolVersion.MINECRAFT_1_7_10, builder17);
 		pipelineBuilders.put(ProtocolVersion.MINECRAFT_1_7_5, builder17);
-		IPipeLineBuilder builder16 = new protocolsupport.protocol.transformer.v_1_6.PipeLineBuilder();
+		IPipeLineBuilder builder16 = new protocolsupport.protocol.pipeline.version.v_1_6.PipeLineBuilder();
 		pipelineBuilders.put(ProtocolVersion.MINECRAFT_1_6_4, builder16);
 		pipelineBuilders.put(ProtocolVersion.MINECRAFT_1_6_2, builder16);
 		pipelineBuilders.put(ProtocolVersion.MINECRAFT_1_6_1, builder16);
-		IPipeLineBuilder builder15 = new protocolsupport.protocol.transformer.v_1_5.PipeLineBuilder();
+		IPipeLineBuilder builder15 = new protocolsupport.protocol.pipeline.version.v_1_5.PipeLineBuilder();
 		pipelineBuilders.put(ProtocolVersion.MINECRAFT_1_5_2, builder15);
 		pipelineBuilders.put(ProtocolVersion.MINECRAFT_1_5_1, builder15);
-		pipelineBuilders.put(ProtocolVersion.MINECRAFT_1_4_7, new protocolsupport.protocol.transformer.v_1_4.PipeLineBuilder());
-		pipelineBuilders.put(ProtocolVersion.MINECRAFT_LEGACY, new protocolsupport.protocol.transformer.v_legacy.PipeLineBuilder());
+		pipelineBuilders.put(ProtocolVersion.MINECRAFT_1_4_7, new protocolsupport.protocol.pipeline.version.v_1_4.PipeLineBuilder());
+		pipelineBuilders.put(ProtocolVersion.MINECRAFT_LEGACY, new protocolsupport.protocol.pipeline.version.v_legacy.PipeLineBuilder());
 	}
 
 	protected final ByteBuf receivedData = Unpooled.buffer();

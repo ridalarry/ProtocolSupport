@@ -4,7 +4,7 @@ import protocolsupport.api.ProtocolVersion;
 import protocolsupport.protocol.ClientBoundPacket;
 import protocolsupport.protocol.packet.middle.clientbound.play.MiddleChat;
 import protocolsupport.protocol.packet.middleimpl.PacketData;
-import protocolsupport.protocol.transformer.v_1_7.utils.ChatJsonConverter;
+import protocolsupport.protocol.pipeline.version.v_1_7.utils.ChatJsonConverter;
 import protocolsupport.utils.recyclable.RecyclableCollection;
 import protocolsupport.utils.recyclable.RecyclableSingletonList;
 

@@ -6,7 +6,7 @@ import protocolsupport.protocol.ClientBoundPacket;
 import protocolsupport.protocol.packet.middle.clientbound.play.MiddleChat;
 import protocolsupport.protocol.packet.middleimpl.PacketData;
 import protocolsupport.protocol.transformer.utils.LegacyUtils;
-import protocolsupport.protocol.transformer.v_1_6.utils.ChatEncoder;
+import protocolsupport.protocol.pipeline.version.v_1_6.utils.ChatEncoder;
 import protocolsupport.utils.recyclable.RecyclableCollection;
 import protocolsupport.utils.recyclable.RecyclableSingletonList;
 
