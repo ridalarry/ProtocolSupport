@@ -9,7 +9,7 @@ import protocolsupport.api.ProtocolVersion;
 
 public class ProtocolVersionsHelper {
 
-	public static final ProtocolVersion LATEST_PC = ProtocolVersion.getLatest(ProtocolType.PC);
+	public static final ProtocolVersion LATEST_PC = ProtocolVersion.getLatest();
 
 	public static final ProtocolVersion[] BEFORE_1_5 = ProtocolVersion.getAllBeforeE(ProtocolVersion.MINECRAFT_1_5_1);
 
