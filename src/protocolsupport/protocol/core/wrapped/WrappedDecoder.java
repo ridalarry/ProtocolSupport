@@ -16,7 +16,7 @@ import net.minecraft.server.v1_8_R3.PlayerConnection;
 import protocolsupport.api.events.PlayerDisconnectEvent;
 import protocolsupport.protocol.pipeline.IPacketDecoder;
 import protocolsupport.protocol.storage.ProtocolStorage;
-import protocolsupport.protocol.transformer.handlers.AbstractLoginListener;
+import protocolsupport.protocol.packet.handlers.AbstractLoginListener;
 import protocolsupport.utils.netty.ChannelUtils;
 
 public class WrappedDecoder extends ByteToMessageDecoder {

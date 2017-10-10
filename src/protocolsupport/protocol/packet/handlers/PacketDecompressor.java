@@ -1,4 +1,4 @@
-package protocolsupport.protocol.transformer.handlers;
+package protocolsupport.protocol.packet.handlers;
 
 import java.util.List;
 import java.util.zip.Inflater;
