@@ -171,7 +171,6 @@ public enum SpecificRemapper {
 		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectVarInt>(DataWatcherObjectIndex.BattleHorse.VARIANT, 14) {}, ProtocolVersionsHelper.ALL_1_9),
 		new Entry(new IndexValueRemapperNumberToInt(DataWatcherObjectIndex.BattleHorse.VARIANT, 20), ProtocolVersionsHelper.BEFORE_1_9),
 		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectVarInt>(DataWatcherObjectIndex.BattleHorse.ARMOR, 16) {}, ProtocolVersionsHelper.RANGE__1_10__1_12_2),
-		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectVarInt>(DataWatcherObjectIndex.BattleHorse.ARMOR, 17) {}, ProtocolVersion.MINECRAFT_1_10),
 		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectVarInt>(DataWatcherObjectIndex.BattleHorse.ARMOR, 16) {}, ProtocolVersionsHelper.ALL_1_9),
 		new Entry(new IndexValueRemapperNumberToInt(DataWatcherObjectIndex.BattleHorse.ARMOR, 22), ProtocolVersionsHelper.BEFORE_1_9)
 	),
@@ -180,22 +179,18 @@ public enum SpecificRemapper {
 	),
 	COMMON_HORSE(NetworkEntityType.COMMON_HORSE, SpecificRemapper.BATTLE_HORSE),
 	ZOMBIE_HORSE(NetworkEntityType.ZOMBIE_HORSE, SpecificRemapper.BATTLE_HORSE,
-		new Entry(new FirstMetaDataAddRemapper(14, new DataWatcherObjectVarInt(3)), ProtocolVersion.MINECRAFT_1_10),
 		new Entry(new FirstMetaDataAddRemapper(13, new DataWatcherObjectVarInt(3)), ProtocolVersionsHelper.ALL_1_9),
 		new Entry(new FirstMetaDataAddRemapper(19, new DataWatcherObjectByte((byte) 3)), ProtocolVersion.getAllBetween(ProtocolVersion.MINECRAFT_1_6_1, ProtocolVersion.MINECRAFT_1_8))
 	),
 	SKELETON_HORSE(NetworkEntityType.SKELETON_HORSE, SpecificRemapper.BATTLE_HORSE,
-		new Entry(new FirstMetaDataAddRemapper(14, new DataWatcherObjectVarInt(4)), ProtocolVersion.MINECRAFT_1_10),
 		new Entry(new FirstMetaDataAddRemapper(13, new DataWatcherObjectVarInt(4)), ProtocolVersionsHelper.ALL_1_9),
 		new Entry(new FirstMetaDataAddRemapper(19, new DataWatcherObjectByte((byte) 4)), ProtocolVersion.getAllBetween(ProtocolVersion.MINECRAFT_1_6_1, ProtocolVersion.MINECRAFT_1_8))
 	),
 	DONKEY(NetworkEntityType.DONKEY, SpecificRemapper.CARGO_HORSE,
-		new Entry(new FirstMetaDataAddRemapper(14, new DataWatcherObjectVarInt(1)), ProtocolVersion.MINECRAFT_1_10),
 		new Entry(new FirstMetaDataAddRemapper(13, new DataWatcherObjectVarInt(1)), ProtocolVersionsHelper.ALL_1_9),
 		new Entry(new FirstMetaDataAddRemapper(19, new DataWatcherObjectByte((byte) 1)), ProtocolVersion.getAllBetween(ProtocolVersion.MINECRAFT_1_6_1, ProtocolVersion.MINECRAFT_1_8))
 	),
 	MULE(NetworkEntityType.MULE, SpecificRemapper.CARGO_HORSE,
-		new Entry(new FirstMetaDataAddRemapper(14, new DataWatcherObjectVarInt(2)), ProtocolVersion.MINECRAFT_1_10),
 		new Entry(new FirstMetaDataAddRemapper(13, new DataWatcherObjectVarInt(2)), ProtocolVersionsHelper.ALL_1_9),
 		new Entry(new FirstMetaDataAddRemapper(19, new DataWatcherObjectByte((byte) 2)), ProtocolVersion.getAllBetween(ProtocolVersion.MINECRAFT_1_6_1, ProtocolVersion.MINECRAFT_1_8))
 	),
@@ -219,7 +214,6 @@ public enum SpecificRemapper {
 		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectFloat>(DataWatcherObjectIndex.Wolf.HEALTH, 14) {}, ProtocolVersionsHelper.ALL_1_9),
 		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectFloat>(DataWatcherObjectIndex.Wolf.HEALTH, 18) {}, ProtocolVersion.getAllBetween(ProtocolVersion.MINECRAFT_1_8, ProtocolVersion.MINECRAFT_1_6_1)),
 		new Entry(new IndexValueRemapperNumberToInt(DataWatcherObjectIndex.Wolf.HEALTH, 18), ProtocolVersionsHelper.BEFORE_1_6),
-		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectBoolean>(DataWatcherObjectIndex.Wolf.BEGGING, 16) {}, ProtocolVersion.MINECRAFT_1_10),
 		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectBoolean>(DataWatcherObjectIndex.Wolf.BEGGING, 15) {}, ProtocolVersionsHelper.ALL_1_9),
 		new Entry(new IndexValueRemapperBooleanToByte(DataWatcherObjectIndex.Wolf.BEGGING, 19), ProtocolVersionsHelper.BEFORE_1_9),
 		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectVarInt>(DataWatcherObjectIndex.Wolf.COLLAR_COLOR, 17) {}, ProtocolVersionsHelper.RANGE__1_10__1_12_2),
@@ -300,12 +294,10 @@ public enum SpecificRemapper {
 		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectVarInt>(DataWatcherObjectIndex.Zombie.PROFESSION, 12) {}, ProtocolVersionsHelper.ALL_1_9),
 		new Entry(new IndexValueRemapperNumberToByte(DataWatcherObjectIndex.Zombie.PROFESSION, 13), ProtocolVersionsHelper.BEFORE_1_9),
 		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectBoolean>(DataWatcherObjectIndex.Zombie.HANDS_UP, 14) {}, ProtocolVersionsHelper.RANGE__1_11__1_12_2),
-		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectBoolean>(DataWatcherObjectIndex.Zombie.HANDS_UP, 15) {}, ProtocolVersion.MINECRAFT_1_10),
 		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectBoolean>(DataWatcherObjectIndex.Zombie.HANDS_UP, 14) {}, ProtocolVersionsHelper.ALL_1_9)
 	),
 	ZOMBIE_VILLAGER(NetworkEntityType.ZOMBIE_VILLAGER, SpecificRemapper.ZOMBIE,
 		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectBoolean>(DataWatcherObjectIndex.ZombieVillager.CONVERTING, 15) {}, ProtocolVersionsHelper.RANGE__1_11__1_12_2),
-		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectBoolean>(DataWatcherObjectIndex.ZombieVillager.CONVERTING, 14) {}, ProtocolVersion.MINECRAFT_1_10),
 		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectBoolean>(DataWatcherObjectIndex.ZombieVillager.CONVERTING, 13) {}, ProtocolVersionsHelper.ALL_1_9),
 		new Entry(new IndexValueRemapperBooleanToByte(DataWatcherObjectIndex.ZombieVillager.CONVERTING, 14), ProtocolVersionsHelper.BEFORE_1_9)
 	),
@@ -346,17 +338,12 @@ public enum SpecificRemapper {
 	MAGMA_CUBE(NetworkEntityType.MAGMA_CUBE, SpecificRemapper.SLIME),
 	BASE_SKELETON(NetworkEntityType.BASE_SKELETON, SpecificRemapper.INSENTIENT,
 		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectBoolean>(DataWatcherObjectIndex.Skeleton.ATTACKING, 12) {}, ProtocolVersionsHelper.RANGE__1_11__1_12_2),
-		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectBoolean>(DataWatcherObjectIndex.Skeleton.ATTACKING, 13) {}, ProtocolVersion.MINECRAFT_1_10),
 		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectBoolean>(DataWatcherObjectIndex.Skeleton.ATTACKING, 12) {}, ProtocolVersionsHelper.ALL_1_9)
 	),
 	SKELETON(NetworkEntityType.SKELETON, SpecificRemapper.BASE_SKELETON),
 	WITHER_SKELETON(NetworkEntityType.WITHER_SKELETON, SpecificRemapper.BASE_SKELETON,
-		new Entry(new FirstMetaDataAddRemapper(12, new DataWatcherObjectVarInt(1)), ProtocolVersion.MINECRAFT_1_10),
 		new Entry(new FirstMetaDataAddRemapper(11, new DataWatcherObjectVarInt(1)), ProtocolVersionsHelper.ALL_1_9),
 		new Entry(new FirstMetaDataAddRemapper(13, new DataWatcherObjectByte((byte) 1)), ProtocolVersionsHelper.BEFORE_1_9)
-	),
-	STRAY(NetworkEntityType.STRAY, SpecificRemapper.BASE_SKELETON,
-		new Entry(new FirstMetaDataAddRemapper(12, new DataWatcherObjectVarInt(2)), ProtocolVersion.MINECRAFT_1_10)
 	),
 	WITCH(NetworkEntityType.WITCH, SpecificRemapper.INSENTIENT,
 		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectBoolean>(DataWatcherObjectIndex.Witch.AGGRESSIVE, 12) {}, ProtocolVersionsHelper.RANGE__1_10__1_12_2),
@@ -394,12 +381,6 @@ public enum SpecificRemapper {
 	GUARDIAN(NetworkEntityType.GUARDIAN, SpecificRemapper.INSENTIENT,
 		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectBoolean>(DataWatcherObjectIndex.Guardian.SPIKES, 12) {}, ProtocolVersionsHelper.RANGE__1_11__1_12_2),
 		new Entry(new IndexValueRemapper<DataWatcherObjectBoolean>(DataWatcherObjectIndex.Guardian.SPIKES, 12) {
-			@Override
-			public DataWatcherObject<?> remapValue(DataWatcherObjectBoolean object) {
-				return new DataWatcherObjectByte(object.getValue() ? (byte) 2 : (byte) 0);
-			}
-		}, ProtocolVersion.MINECRAFT_1_10),
-		new Entry(new IndexValueRemapper<DataWatcherObjectBoolean>(DataWatcherObjectIndex.Guardian.SPIKES, 11) {
 			@Override
 			public DataWatcherObject<?> remapValue(DataWatcherObjectBoolean object) {
 				return new DataWatcherObjectByte(object.getValue() ? (byte) 2 : (byte) 0);

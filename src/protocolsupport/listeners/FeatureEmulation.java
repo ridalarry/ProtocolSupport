@@ -38,37 +38,6 @@ public class FeatureEmulation implements Listener {
 		}
 	}
 
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-	public void onBlockPlace(BlockPlaceEvent event) {
-		Connection connection = ProtocolSupportAPI.getConnection(event.getPlayer());
-		if (
-			(connection != null) &&
-			(connection.getVersion().getProtocolType() == ProtocolType.PC) &&
-			connection.getVersion().isBefore(ProtocolVersion.MINECRAFT_1_9)
-		) {
-			Block block = event.getBlock();
-			connection.sendPacket(ServerPlatform.get().getPacketFactory().createBlockBreakSoundPacket(new Position(block.getX(), block.getY(), block.getZ()), block.getType()));
-		}
-	}
-
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-	public void onEntityDamage(EntityDamageEvent event) {
-		if (((event.getCause() == DamageCause.FIRE_TICK) || (event.getCause() == DamageCause.FIRE) || (event.getCause() == DamageCause.DROWNING))) {
-			for (Player player : ServerPlatform.get().getMiscUtils().getNearbyPlayers(event.getEntity().getLocation(), 48, 128, 48)) {
-				if (player != null) {
-					Connection connection = ProtocolSupportAPI.getConnection(player);
-					if (
-						(connection != null) &&
-						(connection.getVersion().getProtocolType() == ProtocolType.PC) &&
-						connection.getVersion().isBefore(ProtocolVersion.MINECRAFT_1_12)
-					) {
-						connection.sendPacket(ServerPlatform.get().getPacketFactory().createEntityStatusPacket(event.getEntity(), 2));
-					}
-				}
-			}
-		}
-	}
-
 	@EventHandler
 	public void onJoin(final PlayerJoinEvent event) {
 		Bukkit.getScheduler().runTaskLater(ProtocolSupport.getInstance(), new Runnable() {

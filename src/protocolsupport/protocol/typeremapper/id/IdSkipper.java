@@ -34,11 +34,6 @@ public class IdSkipper {
 
 	public static final IntSkippingRegistry<HashMapBasedIntSkippingTable> ENCHANT = new IntSkippingRegistry<HashMapBasedIntSkippingTable>() {
 		{
-			registerSkipEntry(Enchantment.SWEEPING_EDGE, ProtocolVersionsHelper.BEFORE_1_11_1);
-			registerSkipEntry(Enchantment.BINDING_CURSE, ProtocolVersionsHelper.BEFORE_1_10);
-			registerSkipEntry(Enchantment.VANISHING_CURSE, ProtocolVersionsHelper.BEFORE_1_10);
-			registerSkipEntry(Enchantment.FROST_WALKER, ProtocolVersionsHelper.BEFORE_1_9);
-			registerSkipEntry(Enchantment.MENDING, ProtocolVersionsHelper.BEFORE_1_9);
 			registerSkipEntry(Enchantment.DEPTH_STRIDER, ProtocolVersionsHelper.BEFORE_1_8);
 			registerSkipEntry(Enchantment.LURE, ProtocolVersionsHelper.BEFORE_1_7);
 			registerSkipEntry(Enchantment.LUCK, ProtocolVersionsHelper.BEFORE_1_7);
@@ -55,10 +50,6 @@ public class IdSkipper {
 
 	public static final IntSkippingRegistry<ArrayBasedIntSkippingTable> EFFECT = new IntSkippingRegistry<ArrayBasedIntSkippingTable>() {
 		{
-			registerSkipEntry(PotionEffectType.GLOWING, ProtocolVersionsHelper.BEFORE_1_9);
-			registerSkipEntry(PotionEffectType.LEVITATION, ProtocolVersionsHelper.BEFORE_1_9);
-			registerSkipEntry(PotionEffectType.LUCK, ProtocolVersionsHelper.BEFORE_1_9);
-			registerSkipEntry(PotionEffectType.UNLUCK, ProtocolVersionsHelper.BEFORE_1_9);
 			registerSkipEntry(PotionEffectType.HEALTH_BOOST, ProtocolVersionsHelper.BEFORE_1_6);
 			registerSkipEntry(PotionEffectType.ABSORPTION, ProtocolVersionsHelper.BEFORE_1_6);
 			registerSkipEntry(PotionEffectType.SATURATION, ProtocolVersionsHelper.BEFORE_1_6);

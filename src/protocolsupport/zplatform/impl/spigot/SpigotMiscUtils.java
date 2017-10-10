@@ -8,10 +8,10 @@ import java.util.concurrent.FutureTask;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_12_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
-import org.bukkit.craftbukkit.v1_12_R1.util.CraftIconCache;
+import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_8_R3.util.CraftIconCache;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.CachedServerIcon;
@@ -23,13 +23,13 @@ import com.mojang.authlib.properties.Property;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelPipeline;
-import net.minecraft.server.v1_12_R1.AxisAlignedBB;
-import net.minecraft.server.v1_12_R1.EntityPlayer;
-import net.minecraft.server.v1_12_R1.EnumProtocol;
-import net.minecraft.server.v1_12_R1.MinecraftServer;
-import net.minecraft.server.v1_12_R1.NBTTagCompound;
-import net.minecraft.server.v1_12_R1.NetworkManager;
-import net.minecraft.server.v1_12_R1.WorldServer;
+import net.minecraft.server.v1_8_R3.AxisAlignedBB;
+import net.minecraft.server.v1_8_R3.EntityPlayer;
+import net.minecraft.server.v1_8_R3.EnumProtocol;
+import net.minecraft.server.v1_8_R3.MinecraftServer;
+import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import net.minecraft.server.v1_8_R3.NetworkManager;
+import net.minecraft.server.v1_8_R3.WorldServer;
 import protocolsupport.api.events.PlayerPropertiesResolveEvent.ProfileProperty;
 import protocolsupport.protocol.pipeline.IPacketPrepender;
 import protocolsupport.protocol.pipeline.IPacketSplitter;
@@ -83,12 +83,12 @@ public class SpigotMiscUtils implements PlatformUtils {
 
 	@Override
 	public ItemStack createItemStackFromNBTTag(NBTTagCompoundWrapper tag) {
-		return CraftItemStack.asCraftMirror(new net.minecraft.server.v1_12_R1.ItemStack(((SpigotNBTTagCompoundWrapper) tag).unwrap()));
+		return CraftItemStack.asCraftMirror(new net.minecraft.server.v1_8_R3.ItemStack(((SpigotNBTTagCompoundWrapper) tag).unwrap()));
 	}
 
 	@Override
 	public NBTTagCompoundWrapper createNBTTagFromItemStack(ItemStack itemstack) {
-		net.minecraft.server.v1_12_R1.ItemStack nmsitemstack = CraftItemStack.asNMSCopy(itemstack);
+		net.minecraft.server.v1_8_R3.ItemStack nmsitemstack = CraftItemStack.asNMSCopy(itemstack);
 		NBTTagCompound compound = new NBTTagCompound();
 		nmsitemstack.save(compound);
 		return SpigotNBTTagCompoundWrapper.wrap(compound);
