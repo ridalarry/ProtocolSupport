@@ -11,7 +11,7 @@ import net.minecraft.server.v1_8_R3.MinecraftServer;
 import net.minecraft.server.v1_8_R3.NetworkManager;
 import protocolsupport.protocol.core.ChannelHandlers;
 import protocolsupport.protocol.core.FakePacketListener;
-import protocolsupport.protocol.core.initial.InitialPacketDecoder;
+import protocolsupport.protocol.pipeline.initial.InitialPacketDecoder;
 import protocolsupport.protocol.core.timeout.SimpleReadTimeoutHandler;
 import protocolsupport.protocol.core.wrapped.WrappedDecoder;
 import protocolsupport.protocol.core.wrapped.WrappedEncoder;

@@ -1,4 +1,4 @@
-package protocolsupport.protocol.core.initial;
+package protocolsupport.protocol.pipeline.initial;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.handler.codec.DecoderException;

@@ -8,7 +8,7 @@ import protocolsupport.injector.ServerInjector;
 import protocolsupport.injector.network.NettyInjector;
 import protocolsupport.protocol.ClientBoundPacket;
 import protocolsupport.protocol.ServerBoundPacket;
-import protocolsupport.protocol.core.initial.InitialPacketDecoder;
+import protocolsupport.protocol.pipeline.initial.InitialPacketDecoder;
 import protocolsupport.protocol.transformer.handlers.AbstractLoginListener;
 import protocolsupport.server.listeners.PlayerListener;
 import protocolsupport.utils.netty.Allocator;

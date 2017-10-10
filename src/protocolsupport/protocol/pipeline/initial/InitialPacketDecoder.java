@@ -1,4 +1,4 @@
-package protocolsupport.protocol.core.initial;
+package protocolsupport.protocol.pipeline.initial;
 
 import java.nio.charset.StandardCharsets;
 import java.util.EnumMap;
