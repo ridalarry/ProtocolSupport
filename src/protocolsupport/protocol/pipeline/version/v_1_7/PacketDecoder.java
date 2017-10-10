@@ -44,7 +44,7 @@ import protocolsupport.protocol.packet.middleimpl.serverbound.play.v_7.CustomPay
 import protocolsupport.protocol.packet.middleimpl.serverbound.play.v_7.UseEntity;
 import protocolsupport.protocol.packet.middleimpl.serverbound.status.v_7.Ping;
 import protocolsupport.protocol.packet.middleimpl.serverbound.status.v_7.ServerInfoRequest;
-import protocolsupport.protocol.transformer.utils.registry.MiddleTransformerRegistry;
+import protocolsupport.protocol.utils.registry.MiddleTransformerRegistry;
 import protocolsupport.utils.netty.ChannelUtils;
 import protocolsupport.utils.netty.WrappingBuffer;
 import protocolsupport.utils.recyclable.RecyclableCollection;

@@ -9,7 +9,7 @@ import com.mojang.authlib.properties.Property;
 
 import gnu.trove.map.hash.TIntObjectHashMap;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent.ChatSerializer;
-import protocolsupport.protocol.transformer.utils.LegacyUtils;
+import protocolsupport.protocol.utils.LegacyUtils;
 import protocolsupport.protocol.typeremapper.watchedentity.types.WatchedEntity;
 import protocolsupport.protocol.typeremapper.watchedentity.types.WatchedPlayer;
 

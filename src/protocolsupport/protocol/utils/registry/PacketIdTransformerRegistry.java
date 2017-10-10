@@ -1,4 +1,4 @@
-package protocolsupport.protocol.transformer.utils.registry;
+package protocolsupport.protocol.utils.registry;
 
 import java.util.Arrays;
 import java.util.EnumMap;

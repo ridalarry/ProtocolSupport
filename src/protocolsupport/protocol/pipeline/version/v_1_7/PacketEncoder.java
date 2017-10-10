@@ -92,7 +92,7 @@ import protocolsupport.protocol.packet.middleimpl.clientbound.play.v_7.UseBed;
 import protocolsupport.protocol.packet.middleimpl.clientbound.play.v_7.WorldSound;
 import protocolsupport.protocol.packet.middleimpl.clientbound.status.v_7.Pong;
 import protocolsupport.protocol.packet.middleimpl.clientbound.status.v_7.ServerInfo;
-import protocolsupport.protocol.transformer.utils.registry.MiddleTransformerRegistry;
+import protocolsupport.protocol.utils.registry.MiddleTransformerRegistry;
 import protocolsupport.utils.netty.Allocator;
 import protocolsupport.utils.netty.ChannelUtils;
 import protocolsupport.utils.recyclable.RecyclableCollection;

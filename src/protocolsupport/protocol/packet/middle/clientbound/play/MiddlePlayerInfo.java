@@ -8,7 +8,7 @@ import net.minecraft.server.v1_8_R3.IChatBaseComponent.ChatSerializer;
 import protocolsupport.protocol.PacketDataSerializer;
 import protocolsupport.protocol.storage.LocalStorage.PlayerListEntry;
 import protocolsupport.protocol.packet.middle.ClientBoundMiddlePacket;
-import protocolsupport.protocol.transformer.utils.LegacyUtils;
+import protocolsupport.protocol.utils.LegacyUtils;
 
 public abstract class MiddlePlayerInfo<T> extends ClientBoundMiddlePacket<T> {
 

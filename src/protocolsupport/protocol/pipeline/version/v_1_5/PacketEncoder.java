@@ -86,8 +86,8 @@ import protocolsupport.protocol.packet.middleimpl.clientbound.play.v_4_5_6_7.Set
 import protocolsupport.protocol.packet.middleimpl.clientbound.play.v_4_5_6_7.TimeUpdate;
 import protocolsupport.protocol.packet.middleimpl.clientbound.play.v_4_5_6_7.WorldEvent;
 import protocolsupport.protocol.packet.middleimpl.clientbound.status.v_5_6.ServerInfo;
-import protocolsupport.protocol.transformer.utils.registry.MiddleTransformerRegistry;
-import protocolsupport.protocol.transformer.utils.registry.PacketIdTransformerRegistry;
+import protocolsupport.protocol.utils.registry.MiddleTransformerRegistry;
+import protocolsupport.protocol.utils.registry.PacketIdTransformerRegistry;
 import protocolsupport.utils.netty.Allocator;
 import protocolsupport.utils.netty.ChannelUtils;
 import protocolsupport.utils.recyclable.RecyclableCollection;

@@ -1,4 +1,4 @@
-package protocolsupport.protocol.transformer.utils;
+package protocolsupport.protocol.utils;
 
 import protocolsupport.api.ProtocolVersion;
 import protocolsupport.protocol.typeremapper.id.IdRemapper;

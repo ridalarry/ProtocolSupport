@@ -7,7 +7,7 @@ import protocolsupport.api.ProtocolVersion;
 import protocolsupport.protocol.ClientBoundPacket;
 import protocolsupport.protocol.packet.middle.clientbound.play.MiddleBlockSignUpdate;
 import protocolsupport.protocol.packet.middleimpl.PacketData;
-import protocolsupport.protocol.transformer.utils.LegacyUtils;
+import protocolsupport.protocol.utils.LegacyUtils;
 import protocolsupport.utils.Utils;
 import protocolsupport.utils.recyclable.RecyclableCollection;
 import protocolsupport.utils.recyclable.RecyclableSingletonList;

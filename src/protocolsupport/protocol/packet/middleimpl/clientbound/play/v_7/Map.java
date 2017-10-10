@@ -4,8 +4,8 @@ import protocolsupport.api.ProtocolVersion;
 import protocolsupport.protocol.ClientBoundPacket;
 import protocolsupport.protocol.packet.middle.clientbound.play.MiddleMap;
 import protocolsupport.protocol.packet.middleimpl.PacketData;
-import protocolsupport.protocol.transformer.utils.MapTransformer;
-import protocolsupport.protocol.transformer.utils.MapTransformer.ColumnEntry;
+import protocolsupport.protocol.utils.MapTransformer;
+import protocolsupport.protocol.utils.MapTransformer.ColumnEntry;
 import protocolsupport.utils.recyclable.RecyclableArrayList;
 import protocolsupport.utils.recyclable.RecyclableCollection;
 

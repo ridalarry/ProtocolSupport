@@ -88,8 +88,8 @@ import protocolsupport.protocol.packet.middleimpl.clientbound.play.v_6_7.EntityS
 import protocolsupport.protocol.packet.middleimpl.clientbound.play.v_6_7.PlayerAbilities;
 import protocolsupport.protocol.packet.middleimpl.clientbound.play.v_6_7.SetHealth;
 import protocolsupport.protocol.packet.middleimpl.clientbound.status.v_5_6.ServerInfo;
-import protocolsupport.protocol.transformer.utils.registry.MiddleTransformerRegistry;
-import protocolsupport.protocol.transformer.utils.registry.PacketIdTransformerRegistry;
+import protocolsupport.protocol.utils.registry.MiddleTransformerRegistry;
+import protocolsupport.protocol.utils.registry.PacketIdTransformerRegistry;
 import protocolsupport.utils.netty.Allocator;
 import protocolsupport.utils.netty.ChannelUtils;
 import protocolsupport.utils.recyclable.RecyclableCollection;

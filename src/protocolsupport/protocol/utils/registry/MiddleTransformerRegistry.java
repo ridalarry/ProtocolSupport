@@ -1,4 +1,4 @@
-package protocolsupport.protocol.transformer.utils.registry;
+package protocolsupport.protocol.utils.registry;
 
 import net.minecraft.server.v1_8_R3.EnumProtocol;
 

@@ -43,7 +43,7 @@ import protocolsupport.protocol.packet.middleimpl.serverbound.play.v_6_7.EntityA
 import protocolsupport.protocol.packet.middleimpl.serverbound.play.v_6_7.PlayerAbilities;
 import protocolsupport.protocol.packet.middleimpl.serverbound.play.v_6_7.PositionLook;
 import protocolsupport.protocol.packet.middleimpl.serverbound.play.v_6_7.SteerVehicle;
-import protocolsupport.protocol.transformer.utils.registry.MiddleTransformerRegistry;
+import protocolsupport.protocol.utils.registry.MiddleTransformerRegistry;
 import protocolsupport.utils.netty.ChannelUtils;
 import protocolsupport.utils.netty.ReplayingDecoderBuffer;
 import protocolsupport.utils.netty.ReplayingDecoderBuffer.EOFSignal;
