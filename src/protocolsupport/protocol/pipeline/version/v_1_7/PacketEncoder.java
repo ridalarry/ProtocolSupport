@@ -90,8 +90,8 @@ import protocolsupport.protocol.packet.middleimpl.clientbound.play.v_7.Statistic
 import protocolsupport.protocol.packet.middleimpl.clientbound.play.v_7.TabComplete;
 import protocolsupport.protocol.packet.middleimpl.clientbound.play.v_7.UseBed;
 import protocolsupport.protocol.packet.middleimpl.clientbound.play.v_7.WorldSound;
-import protocolsupport.protocol.packet.middleimpl.clientbound.status.v_1_7.Pong;
-import protocolsupport.protocol.packet.middleimpl.clientbound.status.v_1_7.ServerInfo;
+import protocolsupport.protocol.packet.middleimpl.clientbound.status.v_7.Pong;
+import protocolsupport.protocol.packet.middleimpl.clientbound.status.v_7.ServerInfo;
 import protocolsupport.protocol.transformer.utils.registry.MiddleTransformerRegistry;
 import protocolsupport.utils.netty.Allocator;
 import protocolsupport.utils.netty.ChannelUtils;

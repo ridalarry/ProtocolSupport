@@ -1,0 +1,27 @@
+package protocolsupport.protocol.packet.middleimpl.serverbound.play.v_4_5_6_7;
+
+import java.io.IOException;
+
+import org.bukkit.event.inventory.InventoryType;
+
+import protocolsupport.protocol.PacketDataSerializer;
+import protocolsupport.protocol.packet.middle.serverbound.play.MiddleInventoryClick;
+
+public class InventoryClick extends MiddleInventoryClick {
+
+	@Override
+	public void readFromClientData(PacketDataSerializer serializer) throws IOException {
+		windowId = serializer.readUnsignedByte();
+		slot = serializer.readShort();
+		if (player.getOpenInventory().getType() == InventoryType.ENCHANTING) {
+			if (slot > 0) {
+				slot++;
+			}
+		}
+		button = serializer.readUnsignedByte();
+		actionNumber = serializer.readShort();
+		mode = serializer.readUnsignedByte();
+		itemstack = serializer.readItemStack();
+	}
+
+}

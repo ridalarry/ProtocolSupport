@@ -85,7 +85,7 @@ import protocolsupport.protocol.packet.middleimpl.clientbound.play.v_4_5_6_7.Sco
 import protocolsupport.protocol.packet.middleimpl.clientbound.play.v_4_5_6_7.SetExperience;
 import protocolsupport.protocol.packet.middleimpl.clientbound.play.v_4_5_6_7.TimeUpdate;
 import protocolsupport.protocol.packet.middleimpl.clientbound.play.v_4_5_6_7.WorldEvent;
-import protocolsupport.protocol.packet.middleimpl.clientbound.status.v_1_5_1_6.ServerInfo;
+import protocolsupport.protocol.packet.middleimpl.clientbound.status.v_5_6.ServerInfo;
 import protocolsupport.protocol.transformer.utils.registry.MiddleTransformerRegistry;
 import protocolsupport.protocol.transformer.utils.registry.PacketIdTransformerRegistry;
 import protocolsupport.utils.netty.Allocator;
