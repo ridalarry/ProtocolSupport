@@ -10,7 +10,7 @@ import net.minecraft.server.v1_8_R3.EnumProtocolDirection;
 import net.minecraft.server.v1_8_R3.MinecraftServer;
 import net.minecraft.server.v1_8_R3.NetworkManager;
 import protocolsupport.protocol.pipeline.ChannelHandlers;
-import protocolsupport.protocol.core.FakePacketListener;
+import protocolsupport.protocol.pipeline.common.FakePacketListener;
 import protocolsupport.protocol.pipeline.initial.InitialPacketDecoder;
 import protocolsupport.protocol.core.timeout.SimpleReadTimeoutHandler;
 import protocolsupport.protocol.core.wrapped.WrappedDecoder;

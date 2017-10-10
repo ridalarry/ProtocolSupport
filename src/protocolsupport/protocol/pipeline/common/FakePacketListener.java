@@ -1,4 +1,4 @@
-package protocolsupport.protocol.core;
+package protocolsupport.protocol.pipeline.common;
 
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketListener;
