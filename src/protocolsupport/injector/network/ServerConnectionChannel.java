@@ -9,7 +9,7 @@ import io.netty.channel.ChannelOption;
 import net.minecraft.server.v1_8_R3.EnumProtocolDirection;
 import net.minecraft.server.v1_8_R3.MinecraftServer;
 import net.minecraft.server.v1_8_R3.NetworkManager;
-import protocolsupport.protocol.core.ChannelHandlers;
+import protocolsupport.protocol.pipeline.ChannelHandlers;
 import protocolsupport.protocol.core.FakePacketListener;
 import protocolsupport.protocol.pipeline.initial.InitialPacketDecoder;
 import protocolsupport.protocol.core.timeout.SimpleReadTimeoutHandler;

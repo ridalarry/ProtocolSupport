@@ -14,7 +14,7 @@ import net.minecraft.server.v1_8_R3.MinecraftServer;
 import net.minecraft.server.v1_8_R3.PacketListener;
 import net.minecraft.server.v1_8_R3.PlayerConnection;
 import protocolsupport.api.events.PlayerDisconnectEvent;
-import protocolsupport.protocol.core.IPacketDecoder;
+import protocolsupport.protocol.pipeline.IPacketDecoder;
 import protocolsupport.protocol.storage.ProtocolStorage;
 import protocolsupport.protocol.transformer.handlers.AbstractLoginListener;
 import protocolsupport.utils.netty.ChannelUtils;

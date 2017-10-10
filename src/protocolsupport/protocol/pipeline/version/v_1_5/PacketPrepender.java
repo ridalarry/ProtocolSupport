@@ -2,7 +2,7 @@ package protocolsupport.protocol.pipeline.version.v_1_5;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import protocolsupport.protocol.core.IPacketPrepender;
+import protocolsupport.protocol.pipeline.IPacketPrepender;
 
 public class PacketPrepender implements IPacketPrepender {
 

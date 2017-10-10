@@ -17,7 +17,7 @@ import net.minecraft.server.v1_8_R3.PacketListener;
 import protocolsupport.api.ProtocolVersion;
 import protocolsupport.protocol.ClientBoundPacket;
 import protocolsupport.protocol.PacketDataSerializer;
-import protocolsupport.protocol.core.IPacketEncoder;
+import protocolsupport.protocol.pipeline.IPacketEncoder;
 import protocolsupport.protocol.storage.LocalStorage;
 import protocolsupport.protocol.packet.middle.ClientBoundMiddlePacket;
 import protocolsupport.protocol.packet.middleimpl.PacketData;

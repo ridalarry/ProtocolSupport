@@ -6,7 +6,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.CorruptedFrameException;
-import protocolsupport.protocol.core.IPacketSplitter;
+import protocolsupport.protocol.pipeline.IPacketSplitter;
 import protocolsupport.utils.netty.ChannelUtils;
 
 public class PacketSplitter implements IPacketSplitter {

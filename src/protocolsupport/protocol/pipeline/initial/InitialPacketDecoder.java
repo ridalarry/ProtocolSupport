@@ -15,8 +15,8 @@ import net.minecraft.server.v1_8_R3.MinecraftServer;
 
 import protocolsupport.ProtocolSupport;
 import protocolsupport.api.ProtocolVersion;
-import protocolsupport.protocol.core.ChannelHandlers;
-import protocolsupport.protocol.core.IPipeLineBuilder;
+import protocolsupport.protocol.pipeline.ChannelHandlers;
+import protocolsupport.protocol.pipeline.IPipeLineBuilder;
 import protocolsupport.protocol.storage.ProtocolStorage;
 import protocolsupport.utils.Utils;
 import protocolsupport.utils.Utils.Converter;

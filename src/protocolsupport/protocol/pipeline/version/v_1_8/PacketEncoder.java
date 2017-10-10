@@ -12,7 +12,7 @@ import net.minecraft.server.v1_8_R3.NetworkManager;
 import net.minecraft.server.v1_8_R3.Packet;
 import net.minecraft.server.v1_8_R3.PacketDataSerializer;
 import net.minecraft.server.v1_8_R3.PacketListener;
-import protocolsupport.protocol.core.IPacketEncoder;
+import protocolsupport.protocol.pipeline.IPacketEncoder;
 
 public class PacketEncoder implements IPacketEncoder {
 

@@ -5,7 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 import net.minecraft.server.v1_8_R3.Packet;
 import net.minecraft.server.v1_8_R3.PacketListener;
-import protocolsupport.protocol.core.IPacketEncoder;
+import protocolsupport.protocol.pipeline.IPacketEncoder;
 
 public class WrappedEncoder extends MessageToByteEncoder<Packet<PacketListener>> {
 

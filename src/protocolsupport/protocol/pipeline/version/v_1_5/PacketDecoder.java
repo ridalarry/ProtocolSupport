@@ -13,7 +13,7 @@ import net.minecraft.server.v1_8_R3.NetworkManager;
 import net.minecraft.server.v1_8_R3.Packet;
 import protocolsupport.api.ProtocolVersion;
 import protocolsupport.protocol.PacketDataSerializer;
-import protocolsupport.protocol.core.IPacketDecoder;
+import protocolsupport.protocol.pipeline.IPacketDecoder;
 import protocolsupport.protocol.packet.middle.ServerBoundMiddlePacket;
 import protocolsupport.protocol.packet.middleimpl.serverbound.handshake.v_4_5_6.ClientLogin;
 import protocolsupport.protocol.packet.middleimpl.serverbound.handshake.v_5.Ping;

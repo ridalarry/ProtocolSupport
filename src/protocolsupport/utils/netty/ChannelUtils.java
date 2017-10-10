@@ -9,7 +9,7 @@ import io.netty.channel.Channel;
 import net.minecraft.server.v1_8_R3.EntityPlayer;
 import net.minecraft.server.v1_8_R3.NetworkManager;
 import net.minecraft.server.v1_8_R3.PlayerConnection;
-import protocolsupport.protocol.core.ChannelHandlers;
+import protocolsupport.protocol.pipeline.ChannelHandlers;
 
 public class ChannelUtils {
 

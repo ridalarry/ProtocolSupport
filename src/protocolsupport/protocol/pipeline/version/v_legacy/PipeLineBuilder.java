@@ -2,8 +2,8 @@ package protocolsupport.protocol.pipeline.version.v_legacy;
 
 import io.netty.channel.Channel;
 import protocolsupport.api.ProtocolVersion;
-import protocolsupport.protocol.core.ChannelHandlers;
-import protocolsupport.protocol.core.IPipeLineBuilder;
+import protocolsupport.protocol.pipeline.ChannelHandlers;
+import protocolsupport.protocol.pipeline.IPipeLineBuilder;
 
 public class PipeLineBuilder implements IPipeLineBuilder {
 
