@@ -442,10 +442,7 @@ public enum SpecificRemapper {
 	),
 	FALLING_OBJECT(NetworkEntityType.FALLING_OBJECT, SpecificRemapper.ENTITY),
 	ENDEREYE(NetworkEntityType.ENDEREYE, SpecificRemapper.ENTITY),
-	POTION(NetworkEntityType.POTION, SpecificRemapper.ENTITY,
-		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectItemStack>(DataWatcherObjectIndex.Potion.ITEM, 6) {}, ProtocolVersionsHelper.RANGE__1_10__1_12_2),
-		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectItemStack>(DataWatcherObjectIndex.Potion.ITEM, 7) {}, ProtocolVersion.MINECRAFT_1_10),
-		new Entry(new IndexValueRemapperNoOp<DataWatcherObjectItemStack>(DataWatcherObjectIndex.Potion.ITEM, 6) {}, ProtocolVersionsHelper.ALL_1_9)
+	POTION(NetworkEntityType.POTION, SpecificRemapper.ENTITY
 	),
 	EXP_BOTTLE(NetworkEntityType.EXP_BOTTLE, SpecificRemapper.ENTITY),
 	LEASH_KNOT(NetworkEntityType.LEASH_KNOT, SpecificRemapper.ENTITY),

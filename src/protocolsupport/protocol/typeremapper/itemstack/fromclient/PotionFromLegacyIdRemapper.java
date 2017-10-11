@@ -23,7 +23,7 @@ public class PotionFromLegacyIdRemapper implements ItemStackSpecificRemapper {
 				itemstack.setTag(tag);
 			}
 			tag.setString("Potion", name);
-			itemstack.setType(LegacyPotion.isThrowable(data) ? Material.SPLASH_POTION : Material.POTION);
+			itemstack.setType(LegacyPotion.isThrowable(data) ? Material.POTION : Material.POTION);
 			itemstack.setData(0);
 		}
 		return itemstack;
