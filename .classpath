@@ -2,7 +2,13 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="F:/servers/DUELS/spigot.jar"/>
 	<classpathentry kind="lib" path="buildprocessor/BuildProcessor.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PCA/Downloads/craftbukkit-1.8.8-R0.1-SNAPSHOT-latest.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PCA/Desktop/trove-3.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PCA/Downloads/spigot-api-1.12.2-R0.1-SNAPSHOT-b1421.jar"/>
+	<classpathentry kind="lib" path="C:/Users/PCA/Downloads/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="D:/Users/PCA/Downloads/javassist.jar"/>
+	<classpathentry kind="lib" path="D:/Users/PCA/Downloads/lombok.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
