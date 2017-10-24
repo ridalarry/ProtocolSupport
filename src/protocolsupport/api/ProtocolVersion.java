@@ -136,4 +136,14 @@ public enum ProtocolVersion {
 		return ProtocolVersion.MINECRAFT_1_4_7;
 	}
 
+	public ProtocolVersion previous() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public ProtocolVersion next() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }
