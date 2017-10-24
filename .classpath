@@ -6,8 +6,9 @@
 	<classpathentry kind="lib" path="D:/Users/PCA/Downloads/javassist.jar"/>
 	<classpathentry kind="lib" path="D:/Users/PCA/Downloads/junit-4.10.jar"/>
 	<classpathentry kind="lib" path="F:/servers/DUELS/spigot.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="gradle/plugins/shadowPlugin.jar"/>
 	<classpathentry kind="lib" path="gradle/wrapper/gradle-wrapper.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/PCA/Downloads/craftbukkit-1.8.8-R0.1-SNAPSHOT-latest.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
